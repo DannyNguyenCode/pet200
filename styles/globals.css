@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* 
+  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
+*/
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.app {
+  @apply relative z-10 flex justify-center items-center flex-col mx-auto ;
+}
+
+.content_wrapper{
+  @apply max-w-7xl
+}
+
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+
+.logo_text {
+  @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+  align-content: center;
+}
+
+.navContainer{
+  box-shadow: 1px 1px 5px black;
+}
+.card_template{
+
+}
+.card_header{
+  background-color: #1976d2;
+  color: white;
+  margin-bottom: 0.1rem !important;
+}
+.capitalize{
+  text-transform: capitalize
+}
+
+.content{
+  /* display: flex;
+  flex-direction: row;
+  float: left; */
+
+}
+.card_text_container{
+  float: left ;
+  width: 2500px;
+}
+.full_width{
+  width: 100%;
+}
+.card_text{
+}
+
+.nav{
+
+}
+.checklist_header{
+  height: 80px !important;
+  width: 100%;
+  border-bottom: 0.1rem solid red !important;
+  display: flex;
+  justify-content: center;
+}
+.checklist_header_span{
+  align-self: flex-end;
+}
+
+.checklist_lines{
+  height: 40px !important;
+  display: flex;
+}
+.checklist_lines_span{
+  align-self: flex-end;
+}
+
+.profile_image{
+  display: block;
+  margin: auto;
+}
+.border{
+  border: 1 solid black;
+}
