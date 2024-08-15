@@ -2,7 +2,6 @@ import { connecToDB } from "@utils/database";
 import AccountCredentials from "@models/accountCredentials"
 
 export const GET = async  (req:any,{params}:any)=>{
-    console.log("check3")
     try {
         await connecToDB();
         const userCredential = await AccountCredentials.findOne({email:params.email});
