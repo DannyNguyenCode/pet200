@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useState,useEffect } from 'react';
 import {signIn,signOut,useSession,getProviders} from 'next-auth/react';
+import { AddPetButton, SigninButton } from '@styles/buttonThemes';
 
 
 
@@ -88,7 +89,7 @@ function ResponsiveAppBar() {
                 {providers && Object.values(providers).map((provider:any)=>{
                    return (
                     <MenuItem key={provider.id}  onClick={()=>signIn(provider.id,{callbackUrl:'/',redirect:true})}>
-                      <Typography textAlign="center">Login</Typography>
+                      <Typography textAlign="center">Signin</Typography>
                     </MenuItem>
                     )
                 })}
@@ -113,13 +114,14 @@ function ResponsiveAppBar() {
 
           </Box>
           :<Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-              {providers && Object.values(providers).map((provider:any)=>{
+              {/* {providers && Object.values(providers).map((provider:any)=>{
                    return (
                     <MenuItem key={provider.id} onClick={()=>signIn(provider.id,{callbackUrl:'/',redirect:true})}>
-                      <Typography textAlign="center">Login</Typography>
+                      <Typography textAlign="center">Sigin</Typography>
                     </MenuItem>
                     )
-                })}
+                })} */}
+              <SigninButton LinkComponent={'a'} href='/login'>Sigin</SigninButton>
 
               
           </Box>  

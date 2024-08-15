@@ -49,6 +49,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 email: session.user.email
             })
             session.user.id = sessionUser._id.toString();
+            console.log("sessionUser",sessionUser)
             return session
     
         },
