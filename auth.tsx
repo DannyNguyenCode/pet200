@@ -4,7 +4,6 @@ import { connecToDB } from "@utils/database";
 import User from "@models/user";
 import Credentials from "next-auth/providers/credentials"
 import { saltAndHashPassword } from "@utils/saltAndHashPassword";
-import AccountCredentials from "@models/accountCredentials";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -22,16 +21,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         authorize: async (credentials) => {
           // logic to salt and hash password
           const pwHash = saltAndHashPassword(credentials.password as string)
-          console.log("check3============")
-          console.log("credentials",credentials)
+
           // logic to verify if the user exists
         try{
             await connecToDB();
-           const user = await AccountCredentials.findOne({
-                email:credentials.email
+           const user = await User.findOne({
+            $and: [
+                {email:credentials.email},
+                {loginType: 'credentials'}
+              ]
+              
             })
-            console.log("check2============")
-            console.log("user",user)
             return user;
         }catch(error){
             throw new Error("User not found.")
@@ -45,42 +45,61 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         strategy:'jwt'
     },
     callbacks:{
+        jwt({token, user, account}) {
+            if (user) { // User is available during sign-in
+              token.id = user.id
+            }
+            if(account){
+                token.loginType = account?.provider
+            }
+        
+            return token
+        },
+
         async session({session,token,user}:{session?:any,token:any,user:any}){
 
             let sessionUser = await User.findOne({
-                email: session.user.email
+                $and: [
+                    {email: session.user.email},
+                    {loginType: token.loginType}
+                  ]
             })
-            if(sessionUser){
-                session.user.id = sessionUser._id.toString();
-            }else{
-                sessionUser = await AccountCredentials.findOne({
-                    email: session.user.email
-                })
-                session.user.id = sessionUser._id.toString();
-            }
+            
+            session.user.loginType = sessionUser.loginType.toString();
+            session.user.id = sessionUser._id.toString();
             return session
     
         },
-        async signIn({ account, profile, user, credentials }:{account?:any, profile?:any, user?:any, credentials?:any}){
+        async signIn({ account, profile, credentials }:{account?:any, profile?:any, user?:any, credentials?:any}){
             try{
                 await connecToDB();
                 let userExists = null
-                if(account.type === "google"){
+
+                if(account.provider === "google"){
                     userExists = await User.findOne({
-                        email:profile.email
+                        $and: [
+                            {email:profile.email},
+                            {loginType: account.provider}
+                          ]
+                       
                     })
                     if(!userExists){
                         await User.create({
                             email:profile.email,
                             username: profile.name.replaceAll(" ","").toLowerCase(),
                             image: profile.picture,
-                            loginType:account.type
+                            loginType:account.provider,
+                            password:''
                         })
                     }
                 }
-                if(account.type === "credentials"){
-                    userExists = await AccountCredentials.findOne({
-                        email:credentials.email
+                if(account.provider === "credentials"){
+                    userExists = await User.findOne({
+                        $and: [
+                            {email:credentials.email},
+                            {loginType: account.provider}
+                          ]
+                     
                     })
                 }
 

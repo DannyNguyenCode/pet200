@@ -5,14 +5,13 @@ import { auth } from "../auth"
 import {signIn} from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 const LoginForm = ({
-  authenticateUser,
+
   email,
   setEmail,
   password,
   setPassword,
 
 }:{
-  authenticateUser:(e:any)=>any
   email:string,
   setEmail:(email:string)=>void,
   password:string,
@@ -22,7 +21,7 @@ const LoginForm = ({
   const router = useRouter();
   const [loginErrorMessage,setLoginErrorMessage]=useState('')
   return (
-    <Box className='w-full flex-center content_wrapper' component={'form'} onSubmit={authenticateUser}>
+    <Box className='w-full flex-center content_wrapper' component={'form'}>
         <FormControl>
           <TextField value={email} onChange={(e:any)=>setEmail(e.target.value)} label="Email" variant="filled" color="success" />
           <TextField value={password} onChange={(e:any)=>setPassword(e.target.value)} label="Password" variant="filled" color="success" />

@@ -8,9 +8,8 @@ const MyProfile = () => {
   const {data:session}= useSession();
   const [pets,setPets]= useState<Pet[]>([]);
   useEffect(()=>{
-
     const fecthPets = async ()=>{
-      const response = await fetch(`/api/users/${session?.user?.id}/pets`);
+      const response = await fetch(`/api/users/${session?.user?.email}/pets`);
       const data = await response.json();
       setPets(data)
     }

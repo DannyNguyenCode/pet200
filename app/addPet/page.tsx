@@ -20,7 +20,7 @@ const AddPet = () => {
         primaryColor:'',
         secondaryColor:[],
         desc:'',
-        owner:0
+        owner:''
     })
     const [submitting,setSubmitting]= useState(false);
     const addPet = async(e:any)=>{
@@ -41,7 +41,7 @@ const AddPet = () => {
                         age:parseFloat(pet.age),
                         primaryColor:pet.primaryColor,
                         secondaryColor:pet.secondaryColor,
-                        owner:session?.user?.id,
+                        owner:session?.user.email,
                     })
                 }
             );

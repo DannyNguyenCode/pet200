@@ -9,6 +9,6 @@ export interface Pet{
     primaryColor:string,
     secondaryColor:string[],
     desc:string,
-    owner:number
+    owner:string
 
 }

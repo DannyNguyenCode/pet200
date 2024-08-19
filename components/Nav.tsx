@@ -11,24 +11,12 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { useState,useEffect } from 'react';
-import {signIn,signOut,useSession,getProviders} from 'next-auth/react';
-import { AddPetButton, SigninButton } from '@styles/buttonThemes';
-
-
+import {signOut,useSession} from 'next-auth/react';
 
 function ResponsiveAppBar() {
-  const [providers, setProviders] = useState(null);
 
   const {data:session,status}= useSession();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-  useEffect(()=>{
-    const fetchProviders = async ()=>{
-        const response:any = await getProviders();
-        setProviders(response);
-    }
-    fetchProviders();
-  },[])
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -86,49 +74,44 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-                {providers && Object.values(providers).map((provider:any)=>{
-                   return (
-                    <MenuItem key={provider.id}  onClick={()=>signIn(provider.id,{callbackUrl:'/',redirect:true})}>
-                      <Typography textAlign="center">Signin</Typography>
-                    </MenuItem>
-                    )
-                })}
+                <MenuItem component={'a'} href='/login'>
+                    <Typography textAlign="center">Sigin</Typography>
+                </MenuItem>           
+    
 
           </Menu>
         }
       </Box>
     )
   }
+
   const desktopView = ()=>{
-    return (
-      <Box>
-          {status.toLowerCase() === 'authenticated'.toLowerCase()
-          ?<Box sx={{flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-          
+    let view = null
+    if(status.toLowerCase() === 'authenticated'.toLowerCase()){
+      view = <Box sx={{flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>  
                 <MenuItem component={'a'} href='/profile'>
                   <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
                 <MenuItem onClick={()=>{signOut({callbackUrl:'/', redirect:true});} }>
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
-
-          </Box>
-          :<Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-              {/* {providers && Object.values(providers).map((provider:any)=>{
-                   return (
-                    <MenuItem key={provider.id} onClick={()=>signIn(provider.id,{callbackUrl:'/',redirect:true})}>
-                      <Typography textAlign="center">Sigin</Typography>
-                    </MenuItem>
-                    )
-                })} */}
-              <SigninButton LinkComponent={'a'} href='/login'>Sigin</SigninButton>
-
-              
-          </Box>  
-          }
+            </Box>
+    }else if(status.toLowerCase() === 'unauthenticated'.toLowerCase()){
+      view = <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+                <MenuItem component={'a'} href='/login'>
+                    <Typography textAlign="center">Sigin</Typography>
+                </MenuItem>           
+              </Box> 
+    }else{
+      view = <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}></Box>
+    }
+    return (
+      <Box>
+          {view}
       </Box>
     )
   }
+
 
   return (
     <AppBar position="static">
@@ -153,11 +136,11 @@ function ResponsiveAppBar() {
             PET200
           </Typography>
 
-            {/* Mobile Line 41 */}
+            {/* Mobile Line 429 */}
             {mobileView()}
 
 
-            {/* Desktop Line 102 */}
+            {/* Desktop Line 88 */}
             {desktopView()}
         </Toolbar>
       </Container>
