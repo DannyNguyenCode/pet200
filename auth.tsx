@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import Google from "next-auth/providers/google"
+import GitHub from "next-auth/providers/github"
 import { connecToDB } from "@utils/database";
 import User from "@models/user";
 import Credentials from "next-auth/providers/credentials"
@@ -11,6 +12,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             clientId:process.env.GOOGLE_ID as string,
             clientSecret:process.env.GOOGLD_CLIENT_SECRET as string
         }),
+    GitHub,
     Credentials({
         // You can specify which fields should be submitted, by adding keys to the `credentials` object.
         // e.g. domain, username, password, 2FA token, etc.
@@ -76,6 +78,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 let userExists = null
 
                 if(account.provider === "google"){
+                    userExists = await User.findOne({
+                        $and: [
+                            {email:profile.email},
+                            {loginType: account.provider}
+                          ]
+                       
+                    })
+                    if(!userExists){
+                        await User.create({
+                            email:profile.email,
+                            username: profile.name.replaceAll(" ","").toLowerCase(),
+                            image: profile.picture,
+                            loginType:account.provider,
+                            password:''
+                        })
+                    }
+                }
+                if(account.provider.toLowerCase() === "github".toLowerCase()){
                     userExists = await User.findOne({
                         $and: [
                             {email:profile.email},

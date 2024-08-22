@@ -44,6 +44,9 @@ const LoginForm = ({
           <Button variant="contained" onClick={()=>signIn("google",{callbackUrl:'/',redirect:true})}>
             Sign in with Google
           </Button>
+          <Button variant="contained" onClick={()=>signIn("github",{callbackUrl:'/',redirect:true})}>
+            Sign in with GitHub
+          </Button>
         </FormControl>
     </Box>
   )
