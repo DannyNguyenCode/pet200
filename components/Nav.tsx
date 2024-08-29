@@ -76,7 +76,10 @@ function ResponsiveAppBar() {
             >
                 <MenuItem component={'a'} href='/login'>
                     <Typography textAlign="center">Sigin</Typography>
-                </MenuItem>           
+                </MenuItem>
+                <MenuItem component={'a'} href='/register'>
+                    <Typography textAlign="center">Register</Typography>
+                </MenuItem>            
     
 
           </Menu>
@@ -100,7 +103,10 @@ function ResponsiveAppBar() {
       view = <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem component={'a'} href='/login'>
                     <Typography textAlign="center">Sigin</Typography>
-                </MenuItem>           
+                </MenuItem>   
+                <MenuItem component={'a'} href='/register'>
+                    <Typography textAlign="center">Register</Typography>
+                </MenuItem>         
               </Box> 
     }else{
       view = <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}></Box>
