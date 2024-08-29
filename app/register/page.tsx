@@ -2,16 +2,14 @@
 import RegisterForm from '@components/RegisterForm'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { signIn } from 'next-auth/react'
-// import bcrypt from 'bcrypt'
-// const bcrypt = require('bcrypt');
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import LoadingPage from '@components/LoadingPage';
 const page = () => {
-    const [errorMessage,setErrorMessage] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword]= useState('');
-    const [userAlreadyExists,setUserAlreadyExists]= useState(false);
     const [isLoading,setIsLoading] = useState(false);
-    const router = useRouter();
+
     const registerNewUser = async (e:any)=>{
         const bcrypt = require('bcryptjs');
         e.preventDefault();
@@ -31,42 +29,40 @@ const page = () => {
             })
             if(!res.ok){
                 res.text().then((text)=>{
-                    setUserAlreadyExists(true)
-                    setErrorMessage(text);
+                    toast(text)
                 
                 })
             }
             if(res.ok){
                 res.text().then((text)=>{
-                    setUserAlreadyExists(false)
-                    setErrorMessage(text);
+                    toast(text)     
+                    setEmail("")
+                    setPassword("")
                 
-                })
-                signIn("credentials",{redirect:false, email:email,password:password}).then((res:any)=>{
-                    if(res?.status === 200){
-                      router.push("/profile")
-                    }
                 })
             }
         }catch(err){
-            setErrorMessage(err as string)
+            toast(err as string)
+        }finally{
+            setIsLoading(false)
         }
 
     }
   return (
-    <RegisterForm
-        errorMessage={errorMessage}
-        setErrorMessage={setErrorMessage}
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        userAlreadyExists={userAlreadyExists}
-        setUserAlreadyExists={setUserAlreadyExists}
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        onSubmit={registerNewUser}
-    />
+    <>{isLoading? 
+        <LoadingPage/>
+        :<RegisterForm
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            onSubmit={registerNewUser}
+            ToastContainer={<ToastContainer theme="dark"/>}
+        />
+
+    }
+
+    </>
   )
 }
 

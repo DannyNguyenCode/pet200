@@ -19,7 +19,7 @@ export const POST = async(req:any)=>{
                    
         })
         if(userExists){
-            return new Response("User already Exists in database",{status:409});
+            return new Response("User already exists in database",{status:409});
         }
    
         const newUser = new User({
@@ -30,8 +30,8 @@ export const POST = async(req:any)=>{
             password:user.password,
         });
         await newUser.save();
-        return new Response("Successfully registered new user",{status:201});
+        return new Response("Successfully registered as a user",{status:201});
     } catch (error) {
-        return new Response("Failed to register new user",{status:500})
+        return new Response("Failed to register as a user",{status:500})
     }
 }

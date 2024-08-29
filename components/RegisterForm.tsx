@@ -1,30 +1,20 @@
 'use client'
 import React from 'react'
-import { Box,FormControl,Button,Stack,TextField,Typography } from '@mui/material'
+import { Box,FormControl,Button,Stack,TextField } from '@mui/material'
 const RegisterForm = ({
-    errorMessage,
-    setErrorMessage,
     email,
     setEmail,
     password,
     setPassword,
-    userAlreadyExists,
-    setUserAlreadyExists,
-    isLoading,
-    setIsLoading,
-    onSubmit
+    onSubmit,
+    ToastContainer,
 }:{
-    errorMessage:string,
-    setErrorMessage:(msg:string)=>void
     email:string,
     setEmail:(email:string)=>void
     password:string,
     setPassword:(password:string)=>void
-    userAlreadyExists:boolean,
-    setUserAlreadyExists:(userAlreadyExists:boolean)=>void
-    isLoading:boolean,
-    setIsLoading:(isLoading:boolean)=>void
     onSubmit:(e:any)=>void
+    ToastContainer:any
 }) => {
   return (
     <Box className='content_wrapper' sx={{
@@ -37,7 +27,7 @@ const RegisterForm = ({
             <Button type='submit' variant="contained">
                   Register
             </Button>
-            <Typography color={`${userAlreadyExists?"red":"green"}`}>{errorMessage}</Typography>
+            {ToastContainer}
             </Stack>
         </FormControl>
   
