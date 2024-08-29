@@ -33,11 +33,10 @@ const LoginForm = ({
             <TextField sx={{ width: '20rem' }} value={password} onChange={(e:any)=>setPassword(e.target.value)} label="Password" variant="outlined" color="info"/>
             <Button onClick={()=>{
                 signIn("credentials",{redirect:false, email:email,password:password}).then((res:any)=>{
-                  if(res?.status === 200){
+                  if(res?.status === 200 && res.error === null){
                     router.push("/profile")
                   }else{
-                    setLoginErrorMessage(res?.error);
-                    console.log("res.error",res.error)
+                    setLoginErrorMessage("Invalid Credentials");
                   }
                 })
               

@@ -4,8 +4,11 @@ import GitHub from "next-auth/providers/github"
 import { connecToDB } from "@utils/database";
 import User from "@models/user";
 import Credentials from "next-auth/providers/credentials"
-import { saltAndHashPassword } from "@utils/saltAndHashPassword";
-
+import { CredentialsSignin } from "next-auth";
+const bcrypt = require('bcryptjs');
+class CustomError extends CredentialsSignin {
+    code = "Invalid Credentials"
+   }
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Google({
@@ -21,11 +24,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           password: {},
         },
         authorize: async (credentials) => {
-          // logic to salt and hash password
-          const pwHash = saltAndHashPassword(credentials.password as string)
-
           // logic to verify if the user exists
+
         try{
+ 
             await connecToDB();
            const user = await User.findOne({
             $and: [
@@ -34,9 +36,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               ]
               
             })
-            return user;
+            const passwordAuth = await bcrypt.compare(credentials.password, user.password);
+     
+            if(passwordAuth){
+                return user
+            }else{
+               
+                throw new CustomError();
+            }
+          
         }catch(error){
-            throw new Error("User not found.")
+           console.log(error)
         }
 
         },
