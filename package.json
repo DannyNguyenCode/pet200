@@ -23,7 +23,7 @@
     "masonry-layout": "^4.2.2",
     "mongodb": "^6.6.0",
     "mongoose": "^8.3.3",
-    "next": "^14.2.4",
+    "next": "^14.2.7",
     "next-auth": "^5.0.0-beta.20",
     "npm": "^10.8.3",
     "react": "^18",

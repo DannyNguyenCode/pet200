@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoadingPage from '@components/LoadingPage';
 const page = () => {
+    const router= useRouter();
     const [email,setEmail] = useState('');
     const [password,setPassword]= useState('');
     const [isLoading,setIsLoading] = useState(false);
@@ -34,16 +35,16 @@ const page = () => {
                 })
             }
             if(res.ok){
-                res.text().then((text)=>{
-                    toast(text)     
-                    setEmail("")
-                    setPassword("")
+                router.push("/login/SR")   
+
                 
-                })
+
             }
         }catch(err){
             toast(err as string)
         }finally{
+            setEmail("")
+            setPassword("")
             setIsLoading(false)
         }
 

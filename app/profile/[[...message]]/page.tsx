@@ -4,11 +4,12 @@ import { Pet } from '@interfaces/pet';
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from 'react';
 
-const MyProfile = () => {
+const MyProfile = ({ params }: { params: { message: string } }) => {
   const {data:session}= useSession();
   const [pets,setPets]= useState<Pet[]>([]);
   useEffect(()=>{
     const fecthPets = async ()=>{
+
       const response = await fetch(`/api/users/${session?.user?.email}/pets`);
       const data = await response.json();
       setPets(data)
@@ -21,6 +22,7 @@ const MyProfile = () => {
     
     <Profile 
     pets={pets}
+    message={params.message}
 
     />
   )

@@ -7,14 +7,31 @@ import CardTemplate from './CardTemplate'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { AddPetButton } from '@styles/buttonThemes'
 import { useSession } from 'next-auth/react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const Profile = (
+  {
+    pets,
+    message
+  }:
+  {
+    pets:Pet[],
+    message?:string
 
-const Profile = ({pets}:{pets:Pet[]}) => {
-
+  }) => {
+  useEffect(()=>{
+      if(message && message[0] === "SLI"){
+        toast("Successfully Logged In")
+      }
+      else{
+        console.log("")
+      }
+    },[])
 
   return (
     <section className="w-full flex-center content_wrapper flex-col">
       <Grid container>
-     
+      <ToastContainer theme="dark"/>
           <Grid item xs={12} textAlign={'center'} >
               <ThemeProvider theme={getAclonica()}>
                 <Typography style={{margin: getAclonica().spacing(3)}} component={"h1"}><span>Danny's Profile</span></Typography>
@@ -102,6 +119,7 @@ const Profile = ({pets}:{pets:Pet[]}) => {
 
          
       </Grid>
+   
     </section>
   )
 }

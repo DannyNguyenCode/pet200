@@ -27,17 +27,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           // logic to verify if the user exists
 
         try{
- 
+            
             await connecToDB();
            const user = await User.findOne({
             $and: [
                 {email:credentials.email},
-                {loginType: 'credentials'}
+                {loginType:'credentials'}
               ]
               
-            })
+            })            
             const passwordAuth = await bcrypt.compare(credentials.password, user.password);
-     
             if(passwordAuth){
                 return user
             }else{
@@ -46,6 +45,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             }
           
         }catch(error){
+           
            console.log(error)
         }
 
