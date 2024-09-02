@@ -1,6 +1,7 @@
 import { connecToDB } from "@utils/database";
 import OneTimePasscode from "@models/oneTimePasscode";
 import * as OneTimePasscodeInterface from "@interfaces/oneTimePasscode";
+import { NextRequest } from "next/server";
 //1 Enter email -> click send email
 //2 application calls GET to find any passcodes
 //3 if passcode exists, call DELETE
@@ -17,10 +18,13 @@ import * as OneTimePasscodeInterface from "@interfaces/oneTimePasscode";
 //12 call user POST to update information
 //13 redirect user to login with /login/message
 
-export const GET = async  (req:any,{params}:any)=>{
+export const GET = async(req:NextRequest)=>{
     try {
         await connecToDB();
-        const passcode = await OneTimePasscode.find({user: params.user});
+        console.log("check2====================")
+        console.log("req",req)
+        const passcode = await OneTimePasscode.find({user: req.nextUrl.searchParams.get("user")});
+        console.log("passcode",passcode)
         return new Response(JSON.stringify(passcode),{status: 200})     
     } catch (error) {
         return new Response("Failed to fetch passcode from email provided",{status:500})
@@ -29,6 +33,7 @@ export const GET = async  (req:any,{params}:any)=>{
 
 export const POST = async(req:any)=>{
     const passcode:OneTimePasscodeInterface.oneTimePasscode = await req.json();
+
     try {
         await connecToDB();
         const newPasscode:any = new OneTimePasscode({
@@ -45,10 +50,10 @@ export const POST = async(req:any)=>{
     }
 }
 
-export const DELETE = async(req:any,{params}:any)=>{
+export const DELETE = async(req:NextRequest)=>{
     try{
         await connecToDB();
-        await OneTimePasscode.deleteOne({user:params.user})
+        await OneTimePasscode.deleteOne({user: req.nextUrl.searchParams.get("user")})
         return new Response("Successfully deleted passcode",{status: 200}) 
     }catch(err){
         return new Response("Failed to delete passcode from email provided",{status:500})

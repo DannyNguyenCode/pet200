@@ -40,8 +40,8 @@ const page = () => {
                 
 
             }
-        }catch(err){
-            toast(err as string)
+        }catch(err:any){
+            toast(err.message as string)
         }finally{
             setEmail("")
             setPassword("")

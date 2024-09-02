@@ -30,6 +30,7 @@
     "react-dom": "^18",
     "react-easy-crop": "^5.0.7",
     "react-toastify": "^10.0.5",
+    "resend": "^4.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
