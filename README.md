@@ -6,6 +6,7 @@ Application goal is to find pets a new home, whether you are looking to adopt or
 
 ### Libraries
 - NextJS - v14.2.7
+    - App Router
 - AuthJS - v5.0.0-beta.20
     - Google Signin - Note: Google authentication in testing mode, cannot use unless email is added to authorized list manually.
     - Credentials Signin
