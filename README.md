@@ -23,3 +23,5 @@ Application goal is to find pets a new home, whether you are looking to adopt or
 - react - v18.0.0
 - typescript - v5.0.0
 - tailwindcss - v3.4.1
+- react-verification-input - v4.1.2
+- zod - v3.23.8
