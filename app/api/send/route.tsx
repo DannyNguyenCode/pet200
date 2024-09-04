@@ -5,13 +5,13 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req:any) {
   try {
-    console.log("check===========")
-    console.log("req",req)
+    let request = await req.json();
+
     const { data, error } = await resend.emails.send({
       from: 'Acme <onboarding@resend.dev>',
-      to: ['gbnguyenw@gmail.com'],
+      to: [request.email],
       subject: 'Pet200 Passcode Authentication',
-      react: EmailTemplate({ email: `${req.email}`,passcode:`${req.passcode}` }),
+      react: EmailTemplate({ email: request.email,passcode:request.passcode }),
     });
 
     if (error) {

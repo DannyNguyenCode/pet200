@@ -25,7 +25,6 @@ const AddPet = () => {
     const [submitting,setSubmitting]= useState(false);
     const addPet = async(e:any)=>{
         e.preventDefault();
-        console.log("submitted")
 
         setSubmitting(true);
         try {
@@ -46,7 +45,6 @@ const AddPet = () => {
                 }
             );
             if(res.ok){
-                console.log(res)
                 router.push('/profile')
             }
         } catch (error) {

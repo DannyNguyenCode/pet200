@@ -30,8 +30,10 @@
     "react-dom": "^18",
     "react-easy-crop": "^5.0.7",
     "react-toastify": "^10.0.5",
+    "react-verification-input": "^4.1.2",
     "resend": "^4.0.0",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
