@@ -28,7 +28,7 @@ const OneTimePassCode = ({ params }: { params: { email: string,message:string } 
               toast("Passcode as expired, please request another by clicking Resend button")
             }else{
               //success
-              router.push('/newpassword')
+              router.push(`/newpassword/${emailString}/PC`)
             }
           }
 
