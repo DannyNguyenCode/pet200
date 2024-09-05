@@ -123,7 +123,7 @@ const FilterBar = ({
   return (
     <Paper elevation={0} className='w-full mt-2 flex flex-col'>
         <Paper elevation={0} className='w-full mt-4 flex flex-row'>
-            <Paper elevation={1} className='ml-1 my-3 pl-1 py-2'>
+            <Paper elevation={1} className='m-5 p-3 pr-0 mr-0 ml-2'>
                 <FormControl variant="outlined">
                   <FormLabel focused={false}>Pet Category</FormLabel>
                   <FormGroup row>
@@ -142,7 +142,7 @@ const FilterBar = ({
                   </FormGroup>  
                 </FormControl>
             </Paper>
-            <Paper elevation={1} className='my-3 ml-1 pl-1 py-2'>
+            <Paper elevation={1} className='m-5 p-3 pr-0 mr-0 ml-2'>
                 <FormControl variant="outlined">
                   <FormLabel focused={false}>Gender</FormLabel>
                   <FormGroup row>
@@ -161,7 +161,7 @@ const FilterBar = ({
                   </FormGroup>  
                 </FormControl>
             </Paper>
-            <Paper elevation={1} className='my-3 ml-1 pl-1 py-2'>
+            <Paper elevation={1} className='m-5 p-3 pr-0 mr-0 ml-2'>
                 <FormControl variant="outlined">
                   <FormLabel focused={false}>Color</FormLabel>
                   <FormGroup row>
@@ -182,7 +182,7 @@ const FilterBar = ({
             </Paper>
                   
         </Paper>
-        <Paper elevation={0} className='w-full flex flex-row'>
+        <Paper elevation={0} className='flex flex-row'>
             <Paper elevation={1} className='ml-1 my-3 pl-1 py-2'>
                 <FormControl variant="outlined">
                   <FormLabel focused={false}>Age</FormLabel>

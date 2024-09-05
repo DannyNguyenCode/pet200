@@ -33,7 +33,9 @@
 }
 
 .content_wrapper{
-  @apply max-w-7xl
+  @apply max-w-7xl;
+  display: flex;
+  justify-content: 'center';
 }
 
 .blue_gradient {
