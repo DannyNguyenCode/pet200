@@ -1,4 +1,4 @@
-import {cloudinary} from '@cloudinary.config.mjs'
+import {cloudinary} from '@cloudinary.config.js'
 import { NextRequest } from 'next/server'
 
 export const upLoadToCloudinary = async(
@@ -14,7 +14,8 @@ export const upLoadToCloudinary = async(
                 use_filename:true
             }
         )
-        if(result.ok){
+        console.log("result",result)
+        if(result){
             return result
         }
     }catch(err){
