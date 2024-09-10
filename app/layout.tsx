@@ -25,7 +25,9 @@ const RootLayout=({
                   </div>
                   <main className='app'>
                       <Nav/>
-                     {children}
+                      <section className="w-full content_wrapper flex-col">
+                        {children}
+                     </section>
     
                   </main>
             </AppRouterCacheProvider>

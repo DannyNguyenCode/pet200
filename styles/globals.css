@@ -29,13 +29,13 @@
 }
 
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col mx-auto ;
+  /* @apply relative z-10 flex justify-center items-center flex-col mx-auto ; */
+  @apply justify-center items-center flex flex-col; 
 }
 
 .content_wrapper{
-  @apply max-w-7xl;
-  display: flex;
-  justify-content: 'center';
+  /* @apply max-w-7xl; */
+
 }
 
 .blue_gradient {
@@ -101,9 +101,24 @@
 }
 
 .profile_image{
-  display: block;
-  margin: auto;
+  /* display: block;
+  margin: auto; */
 }
 .border{
   border: 1 solid black;
+}
+
+.CropItemPreviewContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  
+  .preview-thumb {
+    max-width: 200px;
+    max-height: 200px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
 }

@@ -12,17 +12,6 @@ import Image from "next/image";
 
 const CardTemplate =({data, i, isMasonry}:{data:Pet, i:number, isMasonry?:boolean}) => {
 
-  const everOther =(counter:number)=>{
-    if(counter % 2 === 0){
-      return 'nala.jpg'
-    }else if(counter % 3 === 0){
-      return 'mina.jpg'
-    }
-    else{
-      return 'flair.jpg'
-    }
-
-  }
   return (
             <Card raised className={`${isMasonry ? "flex flex-col m-4 card_text_container":"flex flex-col my-4 full_width" }`}>
                   <ThemeProvider theme={dancingScript}>
@@ -34,7 +23,7 @@ const CardTemplate =({data, i, isMasonry}:{data:Pet, i:number, isMasonry?:boolea
                     <Image 
                       height={250}
                       width={250}
-                      src={`/images/${everOther(i)}`}
+                      src={`${data.image}`}
                       alt="pet image placeholder"
                       priority={true}
                       className="w-full"
@@ -55,7 +44,7 @@ const CardTemplate =({data, i, isMasonry}:{data:Pet, i:number, isMasonry?:boolea
 
                 <CardActions>
 
-                  <FullScreenDialog data={data} image={`/images/${everOther(i)}`}/>
+                  <FullScreenDialog data={data} image={`${data.image}`}/>
 
               </CardActions>
           </Card>

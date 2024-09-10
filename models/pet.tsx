@@ -25,6 +25,9 @@ const PetSchema = new Schema({
     secondaryColor:[{
         type:String
     }],
+    desc:{
+        type:String
+    },
     owner:{
         type: String,
         ref:'User'

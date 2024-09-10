@@ -1,5 +1,6 @@
 'use client'
-import { Grid, Box, ThemeProvider,Typography, Button } from '@mui/material'
+import { Box, ThemeProvider,Typography, Button } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import {getDancingScript,getAclonica} from '@styles/profileTheme'
 import { useEffect,useState } from 'react'
 import { Pet } from '@interfaces/pet'
@@ -29,18 +30,18 @@ const Profile = (
     },[])
 
   return (
-    <section className="w-full flex-center content_wrapper flex-col">
+
       <Grid container>
       <ToastContainer theme="dark"/>
-          <Grid item xs={12} textAlign={'center'} >
+          <Grid size={12} textAlign={'center'} >
               <ThemeProvider theme={getAclonica()}>
                 <Typography style={{margin: getAclonica().spacing(3)}} component={"h1"}><span>Danny's Profile</span></Typography>
               </ThemeProvider>
           </Grid>
         
-          <Grid className='border p-4' item xs={12} md={6}>        
-              <Grid container xs={12} md={4} columns={{xs:1, md:2}}>      
-                  <Grid item xs={12} md={4}>
+          <Grid className='border p-4' size={{xs:12, md:6}}>
+              <Grid container size={{xs:12, md:4}}  columns={{xs:1, md:2}}>      
+                  <Grid size={{xs:12, md:4}}  >
                       <ThemeProvider theme={getDancingScript()}>
                         <Typography className='pl-4' component={"h1"}><span>About</span></Typography>
                       </ThemeProvider>
@@ -55,9 +56,9 @@ const Profile = (
           </Grid>
 
      
-          <Grid className='border p-4' item xs={12} md={6}>
-              <Grid container xs={12} md={6} columns={{xs:1, md:2}}>
-                <Grid item xs={12} md={6} >
+          <Grid className='border p-4' size={{xs:12, md:6}}>
+              <Grid container size={{xs:12, md:6}} columns={{xs:1, md:2}}>
+                <Grid size={{xs:12, md:6}} >
                     <ThemeProvider theme={getDancingScript()}>
                       <Typography className='pl-4' component={"h1"} ><span className=''>Contact</span></Typography>
                     </ThemeProvider>
@@ -81,16 +82,16 @@ const Profile = (
               </Grid>
           </Grid>
 
-          <Grid className='border p-4' item xs={12} md={12}>
+          <Grid className='border p-4' size={{xs:12}}>
             <Grid container columns={{xs:1, md:2}}>
-              <Grid item xs={12} md={12}>
+              <Grid size={{xs:12}}>
                 <Grid container>
-                  <Grid item xs={12} md={2}>
+                  <Grid size={{xs:12, md:2}}>
                       <ThemeProvider theme={getDancingScript()}>
                           <Typography className='pl-4' component={"h1"}><span className=''>Current Pets</span></Typography>
                       </ThemeProvider>
                   </Grid>
-                  <Grid alignContent={'center'} item xs={12} md={2}>
+                  <Grid alignContent={'center'} size={{xs:12, md:2}}>
 
                       <AddPetButton LinkComponent={'a'} href='/addPet' onClick={()=>{}} variant="outlined" size='medium' endIcon={<AddCircleOutlineIcon />}>Add Pet</AddPetButton>
 
@@ -100,11 +101,11 @@ const Profile = (
 
               </Grid>
 
-              <Grid item xs={12} md={12}>
+              <Grid size={{xs:12}}>
                 <Grid container className=''>
                   {pets.map((pet,i)=>{
                     return(
-                      <Grid key={pet._id} item xs={12} md={3}>
+                      <Grid key={pet._id} size={{xs:12,md:3}}>
                         <Box sx={{height:'auto'}}>
                           <CardTemplate i={i} data={pet} isMasonry={false}/>
                         </Box>
@@ -120,7 +121,6 @@ const Profile = (
          
       </Grid>
    
-    </section>
   )
 }
 

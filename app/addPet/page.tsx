@@ -4,10 +4,15 @@ import { Pet } from '@interfaces/pet'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-
+import { uploadStagedFile } from '@utils/upLoadStagedFile'
+import { toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import { Stack,Typography } from '@mui/material'
 
 const AddPet = () => {
     const {data:session} = useSession();
+    const [imageFile,setImageFile]= useState<File>()
     const router = useRouter();
     const [pet,setPet]=useState<Pet>({
         _id:0,
@@ -22,11 +27,26 @@ const AddPet = () => {
         desc:'',
         owner:''
     })
+    
     const [submitting,setSubmitting]= useState(false);
+
     const addPet = async(e:any)=>{
         e.preventDefault();
-
+        console.log("check9===========================")
+        console.log("pet",pet)
+        console.log("imageFile",imageFile)
+        let result;
         setSubmitting(true);
+        if(imageFile){
+            result = await uploadStagedFile(imageFile)
+        }else{
+            toast('Please upload an image of your pet.')
+            return;
+        }
+     
+
+        console.log("result inside submit",result)
+        console.log("result.url inside submit",result.url)
         try {
             const res = await fetch(`/api/pet/new`,
                 {
@@ -35,11 +55,12 @@ const AddPet = () => {
                         category:pet.category,
                         name:pet.name,
                         gender:pet.gender,
-                        image:pet.image,
+                        image:result.secure_url,
                         breed:pet.breed,
                         age:parseFloat(pet.age),
                         primaryColor:pet.primaryColor,
                         secondaryColor:pet.secondaryColor,
+                        desc:pet.desc,
                         owner:session?.user.email,
                     })
                 }
@@ -54,12 +75,22 @@ const AddPet = () => {
         }
     }
     return (
-      <PetForm
-        handleSubmit={addPet}
-        setPet={setPet}
-        pet={pet}
-        type={'Create'}
-      />
+      
+            <Stack spacing={2} direction={'column'}>
+                <Typography className='py-4' textAlign={'center'} variant={'h3'}>Create Pet Profile</Typography>
+                <PetForm
+                    handleSubmit={addPet}
+                    setPet={setPet}
+                    pet={pet}
+                    setImageFile={setImageFile}
+                    toastContainer={<ToastContainer theme='dark'/>}/>
+            </Stack>
+    
+        
+
+    
+
+
     )
 }
 

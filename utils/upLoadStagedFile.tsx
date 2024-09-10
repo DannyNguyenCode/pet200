@@ -9,7 +9,7 @@ export const uploadStagedFile = async(stagedFile:File | Blob)=>{
         let result = await postImage.json();
         console.log("check============================")
         console.log("result",result)
-        console.log("result.imgUrl",result.imgUrl)
+        console.log("result.imgUrl",result.url)
         return result
     }catch(err){
         console.log(err)
