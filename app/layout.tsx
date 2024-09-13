@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import Provider from "@components/Provider";
+import ContentWrapper from "@components/ContentWrapper";
 
 export const metadata: Metadata = {
   title: "Find Your Forever Pets",
@@ -20,14 +21,14 @@ const RootLayout=({
         <body>
           <Provider>
             <AppRouterCacheProvider>
-                  <div className='main'>
-                    <div className=""></div>
+                  <div className="main">
+                    <div></div>
                   </div>
-                  <main className='app'>
+                  <main className="app">
                       <Nav/>
-                      <section className="w-full content_wrapper flex-col">
+                      <ContentWrapper>
                         {children}
-                     </section>
+                      </ContentWrapper>
     
                   </main>
             </AppRouterCacheProvider>

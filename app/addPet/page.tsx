@@ -32,22 +32,20 @@ const AddPet = () => {
 
     const addPet = async(e:any)=>{
         e.preventDefault();
+        let result;
+        setSubmitting(true);
         console.log("check9===========================")
         console.log("pet",pet)
         console.log("imageFile",imageFile)
-        let result;
-        setSubmitting(true);
-        if(imageFile){
-            result = await uploadStagedFile(imageFile)
-        }else{
-            toast('Please upload an image of your pet.')
-            return;
-        }
-     
 
-        console.log("result inside submit",result)
-        console.log("result.url inside submit",result.url)
         try {
+
+            if(imageFile){
+                result = await uploadStagedFile(imageFile)
+            }else{
+                toast('Please upload an image of your pet.')
+                return;
+            }
             const res = await fetch(`/api/pet/new`,
                 {
                     method:'POST',

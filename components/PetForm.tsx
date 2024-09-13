@@ -2,8 +2,7 @@
 import { useState } from 'react';
 import { Pet } from '@interfaces/pet'
 import Grid from '@mui/material/Grid2';
-// import UpLoadCropField from './UpLoadCropField'
-import CropperWrapper from './CropperWrapper';
+
 
 import { FormControl,Box, Typography, Divider} from '@mui/material'
 
@@ -12,7 +11,11 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-
+import smartcrop from 'smartcrop'
+import cropImage from '@utils/upload/cropImage';
+import { Area } from 'react-easy-crop';
+import { smartCropResult } from '@interfaces/smartCropResult';
+import { resolve } from 'path';
 const PetForm = ({
   handleSubmit,
   setPet,
@@ -26,6 +29,7 @@ const PetForm = ({
   pet:Pet,
   setImageFile:(imageFile:File)=>void,
   toastContainer:any
+
 
 
 }) => {
@@ -94,42 +98,87 @@ const PetForm = ({
 
   const onImageSelected = async (e:any)=>{
     e.preventDefault();
+    console.log("onImageSelected")
     let selectedFile = e.target.files[0];
     let reader = new FileReader();
     let image = new Image();
-    image.src = URL.createObjectURL(selectedFile)
-    await image.decode();
-    let width = image.width;
-    let height = image.height;
-    width = width/10;
-    height = height/10
-    width=Math.ceil(width/100)*100
-    height=Math.ceil(height/100)*100
-    width=width+100
-    height=height+100
-    // console.log("check================================")
-    // console.log("selectedFile",selectedFile)
-    // console.log("e",e)
+    let blobToImagePath = new FileReader();
 
-    reader.onload = function(event) {
-      // console.log("event.target.result",event?.target?.result)
-      if(event){
-        if(event.target){
-          if(event.target.result){
-
-            setImageWidth(width);
-            setImageHeight(height)
-            setImgPath(event?.target?.result as string);
-            setImageFile(selectedFile)
-          }
-        }
-
-      }   
+    let width=0;
+    let height=0;
+    let smartCropResult:smartCropResult = {
+      height:0,
+      width:0,
+      x:0,
+      y:0
     };
-    reader.readAsDataURL(selectedFile);
-    // console.log("reader",reader);
+    try{
+      image.src = URL.createObjectURL(selectedFile)
+      await image.decode();
 
-    URL.revokeObjectURL(image.src)
+      width = image.width;
+      height = image.height;
+      width = width/10;
+      height = height/10
+      width=Math.ceil(width/100)*100
+      height=Math.ceil(height/100)*100
+      width=width+100
+      height=height+100
+      // console.log("check================================")
+      // console.log("selectedFile",selectedFile)
+      // console.log("e",e)
+      const onLoadCrop = async () => {
+        console.log("onLoadCrop")
+        const { blob, blobUrl, revokeUrl }:any = await cropImage(
+          image, //image
+          selectedFile, // file
+          smartCropResult, // crop area
+          true // with url
+        );
+        console.log("check7===============================")
+        console.log("blob",blob)
+        console.log("blobUrl",blobUrl)
+        console.log("revokeUrl",revokeUrl)
+        blobToImagePath.readAsDataURL(blob)
+        let blobToFile = new File([blob],blob.name,{ type: "image/jpeg"})
+        console.log("blobToFile",blobToImagePath)
+        console.log(typeof blobToFile);
+        console.log("blobToFile", blobToFile);
+        setImageFile(blobToFile as File)
+       
+        
+      };
+      console.log("before onload")
+      blobToImagePath.onload = function(event) {
+        console.log("onload")
+        console.log("event",event)
+        if(event && event.target && event.target.result){
+          setImgPath(event?.target?.result as string)
+
+        }   
+      };
+      smartcrop.crop(image, { width: 100, height: 100 }).then((result)=> {
+          
+        smartCropResult.height = result.topCrop.height
+        smartCropResult.width = result.topCrop.width
+        smartCropResult.x = result.topCrop.x
+        smartCropResult.y = result.topCrop.y
+        onLoadCrop();
+        console.log("imgPath",imgPath)
+        setImageWidth(result.topCrop.width);
+        setImageHeight(result.topCrop.height)
+      })
+      // reader.readAsDataURL(selectedFile);
+      // console.log("reader",reader);
+  
+   
+    }
+    catch(err){
+      console.log(err)
+    }finally{
+      URL.revokeObjectURL(image.src)
+    }
+
   }
   const setCropForItem = (id:any, data:any) => {
     setCropped(() => ({ id, data }));
@@ -334,8 +383,8 @@ const PetForm = ({
                     />
                   </Button>
                 </Box>
-                    <CropperWrapper width={imageWidth} height={imageHeight} img={imgPath}/>  
-           
+
+                    <img width={500} height={500} src={imgPath} alt='test'/>
               </Stack>
             </Grid>
       

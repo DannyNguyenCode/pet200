@@ -78,10 +78,10 @@ const LoginForm = ({
       
               <Stack spacing={1}>
             <Button startIcon variant="contained" onClick={()=>signIn("google",{callbackUrl:'/',redirect:true})}>
-            <Stack alignItems="center" direction="row" gap={2}>
-              <GoogleIcon/> 
-              <Box component="span">Sign in with Google</Box>
-            </Stack>
+              <Stack alignItems="center" direction="row" gap={2}>
+                <GoogleIcon/> 
+                <Box component="span">Sign in with Google</Box>
+              </Stack>
          
             </Button>
             <Button startIcon variant="contained" onClick={()=>signIn("github",{callbackUrl:'/',redirect:true})}>

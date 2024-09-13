@@ -1,8 +1,8 @@
 'use client'
-import { Paper, Checkbox, FormControlLabel, FormLabel, FormControl, FormGroup, RadioGroup,Radio } from '@mui/material'
+import { Paper, Checkbox, FormControlLabel, FormLabel, FormControl, FormGroup, RadioGroup,Radio, Stack, Typography } from '@mui/material'
 import {  useEffect, useState } from 'react'
 import { Pet } from '@interfaces/pet'
-
+import Grid from '@mui/material/Grid2'
 const FilterBar = ({
         setFilterData,petData
     }:
@@ -121,56 +121,62 @@ const FilterBar = ({
 
     }
   return (
-    <Paper elevation={0} className='w-full mt-2 flex flex-col'>
-        <Paper elevation={0} className='w-full mt-4 flex flex-row'>
-            <Paper elevation={1} className='m-5 p-3 pr-0 mr-0 ml-2'>
+  <Grid id='filterbarWrapper'sx={{
+    marginBottom:{
+      xs:'2rem'
+    }
+  }} size={{xs:6,md:1}}>
+          <Stack spacing={2}>
+            <Paper elevation={0}><Typography variant='h6'>Filters</Typography></Paper>
+           
+            <Paper elevation={1} className='filterPaperWrapper'>
                 <FormControl variant="outlined">
                   <FormLabel focused={false}>Pet Category</FormLabel>
-                  <FormGroup row>
+                  <FormGroup>
                     <FormControlLabel
                       control={
-                        <Checkbox value={'cat'}  onChange={(e:any)=>handleFilter(e,"category")} />
+                        <Checkbox className={'checkbox-customization'} value={'cat'}  onChange={(e:any)=>handleFilter(e,"category")} />
                       }
                       label="Cat"
                     />
                     <FormControlLabel
                       control={
-                        <Checkbox value={'dog'} onChange={(e:any)=>handleFilter(e,"category")} />
+                        <Checkbox className={'checkbox-customization'} value={'dog'} onChange={(e:any)=>handleFilter(e,"category")} />
                       }
                       label="Dog"
                     />
                   </FormGroup>  
                 </FormControl>
             </Paper>
-            <Paper elevation={1} className='m-5 p-3 pr-0 mr-0 ml-2'>
+            <Paper elevation={1} className='filterPaperWrapper'>
                 <FormControl variant="outlined">
                   <FormLabel focused={false}>Gender</FormLabel>
-                  <FormGroup row>
+                  <FormGroup>
                     <FormControlLabel
                       control={
-                        <Checkbox value={'male'}  onChange={(e:any)=>handleFilter(e,"gender")} />
+                        <Checkbox className={'checkbox-customization'} value={'male'}  onChange={(e:any)=>handleFilter(e,"gender")} />
                       }
                       label="Male"
                     />
                     <FormControlLabel
                       control={
-                        <Checkbox value={'female'} onChange={(e:any)=>handleFilter(e,"gender")} />
+                        <Checkbox className={'checkbox-customization'} value={'female'} onChange={(e:any)=>handleFilter(e,"gender")} />
                       }
                       label="Female"
                     />
                   </FormGroup>  
                 </FormControl>
             </Paper>
-            <Paper elevation={1} className='m-5 p-3 pr-0 mr-0 ml-2'>
+            <Paper elevation={1} className='filterPaperWrapper'>
                 <FormControl variant="outlined">
                   <FormLabel focused={false}>Color</FormLabel>
-                  <FormGroup row>
+                  <FormGroup>
                     {colorFilters.map((color, i)=>{
                         return(
                             <FormControlLabel
                                 key={i}
                                 control={
-                                  <Checkbox value={color.toLowerCase()}  onChange={(e:any)=>handleFilter(e,"color")} />
+                                  <Checkbox className={'checkbox-customization'} value={color.toLowerCase()}  onChange={(e:any)=>handleFilter(e,"color")} />
                                 }
                                 label={`${color}`}
                             />
@@ -181,39 +187,37 @@ const FilterBar = ({
                 </FormControl>
             </Paper>
                   
-        </Paper>
-        <Paper elevation={0} className='flex flex-row'>
-            <Paper elevation={1} className='ml-1 my-3 pl-1 py-2'>
+            <Paper elevation={1} className='filterPaperWrapper'>
                 <FormControl variant="outlined">
                   <FormLabel focused={false}>Age</FormLabel>
-                  <RadioGroup defaultValue={"all"} row>
+                  <RadioGroup defaultValue={"all"}>
                     <FormControlLabel
                       control={
-                        <Radio  value={'1'}  onChange={(e:any)=>{
+                        <Radio className={'radio-customization'}  value={'1'}  onChange={(e:any)=>{
                           handleFilter(e,"age")
                         }} />
                       }
-                      label="Less than 1"
+                      label="0-1"
                     />
                     <FormControlLabel
                       control={
-                        <Radio  value={'5'} onChange={(e:any)=>{           
+                        <Radio className={'radio-customization'}  value={'5'} onChange={(e:any)=>{           
                           handleFilter(e,"age")
                         }} />
                       }
-                      label="Between 1 and 10"
+                      label="1-10"
                     />
                     <FormControlLabel
                       control={
-                        <Radio  value={'10'} onChange={(e:any)=>{
+                        <Radio className={'radio-customization'}  value={'10'} onChange={(e:any)=>{
                           handleFilter(e,"age")
                         }} />
                       }
-                      label="Over 10"
+                      label="10+"
                     />
                     <FormControlLabel
                       control={
-                        <Radio  value={'all'} onChange={(e:any)=>{
+                        <Radio className={'radio-customization'}  value={'all'} onChange={(e:any)=>{
                           handleFilter(e,"age")
                         }} />
                       }
@@ -222,8 +226,8 @@ const FilterBar = ({
                   </RadioGroup>  
                 </FormControl>
             </Paper>
-        </Paper>
-    </Paper>
+          </Stack>
+  </Grid>
   )
 }
 

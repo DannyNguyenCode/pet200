@@ -1,10 +1,10 @@
-import Content from "@components/Content";
+import Dashboard from "@components/dashboard/Dashboard";
 
 const Home=()=> {
   return (
  
 
-      <Content/>
+      <Dashboard/>
 
   );
 }

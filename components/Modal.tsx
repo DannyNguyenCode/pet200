@@ -17,6 +17,7 @@ import dancingScript from '@styles/dancingScriptTheme'
 import Image from 'next/image';
 import Checklist from './Checklist';
 import checkListHeaderTheme from '@styles/checkListHeaderTheme';
+import optimizingImage from '@utils/optimizeImage';
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -39,7 +40,7 @@ const FullScreenDialog=({data,image}:{data:Pet, image:string})=> {
   };
 
   return (
-    <Fragment>
+    <Grid container>
       <Button variant="outlined" onClick={handleClickOpen}>
         View {data.name} Profile
       </Button>
@@ -68,44 +69,23 @@ const FullScreenDialog=({data,image}:{data:Pet, image:string})=> {
           </Toolbar>
         </AppBar>
  
-            <Grid container >
-                <Grid size={{xs:6}}>
-                    <Image priority width={500} height={500} className='profile_image' alt={`${data.name}'s profile picture`} src={image} />
-                </Grid>
-                
-                <Grid size={{xs:6}}>
-                  <Grid style={{border: '1 solid black'}}> </Grid>
-                  <Checklist data={data}/>
-                </Grid>
-
-
-            
-                  <Grid className='' size={{xs:10}}>
-                    <ThemeProvider theme={checkListHeaderTheme}>
-                        <Typography component={"h1"} className='text-center' ><span className=''>Personality</span></Typography>
-                    </ThemeProvider>
-                  </Grid>
-             
-                  <Grid className='' size={{xs:10}}>
-                    <Typography className='' component={"p"} style={{height:"30px"}}>
-                      <Typography className='' component={"span"}>
-                          {data.desc}
-                      </Typography>
-
-                    </Typography>
-                  </Grid>
-            
-             
-     
-
-       
+        <Grid className='modalProfileWrapper' container>
+            <Grid size={{xs:1,md:3}}>
+          
+              <Image height={`${400}`} width={200} className='profile_image' alt={`${data.name}'s profile picture`} src={optimizingImage(image)} />
+      
             </Grid>
+            
+            <Grid size={{xs:1,md:'grow'}}>
+              <Checklist data={data}/>
+            </Grid>   
+        </Grid>
 
 
 
 
       </Dialog>
-    </Fragment>
+    </Grid>
   );
 }
 export default FullScreenDialog;

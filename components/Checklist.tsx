@@ -1,6 +1,7 @@
 'use client'
 import { ThemeProvider } from '@emotion/react'
-import { Divider, Grid, Typography,Box } from '@mui/material'
+import { Divider, Typography,Box } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import checkListHeaderTheme from '@styles/checkListHeaderTheme'
 import { Pet } from '@interfaces/pet'
 
@@ -10,17 +11,17 @@ const Checklist = ({data}:{data:Pet}) => {
   return (
       <Box>
           <Grid container>
-            <Grid className='' xs={1} item></Grid>
-            <Grid className='' xs={10} item>
+            <Grid className='' size={{xs:1}} ></Grid>
+            <Grid className='' size={10} >
               <ThemeProvider theme={checkListHeaderTheme}>
                   <Typography component={"h1"} className='checklist_header' ><span className='checklist_header_span'>Characteristics</span></Typography>
               </ThemeProvider>
             </Grid>
-            <Grid className='' xs={1} item></Grid>
+            <Grid className='' size={1}></Grid>
           </Grid>
           <Grid container>
-            <Grid className='' xs={1} item></Grid>
-            <Grid xs={10} item>                         
+            <Grid className='' size={1}></Grid>
+            <Grid size={10}>                         
                 <Typography className='checklist_lines' component={"p"} style={{height:"30px"}}>
                   <Typography className='checklist_lines_span capitalize' component={"span"}>
                     Breed: {data.breed}
@@ -51,8 +52,14 @@ const Checklist = ({data}:{data:Pet}) => {
                   </Typography>
                 </Typography>
                 <Divider/>
+                <Typography className='checklist_lines' component={"p"} style={{height:"30px"}}>
+                  <Typography className='checklist_lines_span capitalize' component={"span"}>
+                    Description: {data.desc}
+                  </Typography>
+                </Typography>
+                <Divider/>
             </Grid>
-              <Grid className='' xs={1} item></Grid>
+              <Grid className='' size={1}></Grid>
           </Grid>
       </Box>
   )

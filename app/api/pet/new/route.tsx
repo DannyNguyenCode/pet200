@@ -7,8 +7,6 @@ export const POST = async(req:any)=>{
     const pet:PetInterface.Pet = await req.json();
     try {
         await connecToDB();
-        console.log("check8==========================")
-        console.log("pet",pet)
         const newPet = new Pet({
             category:pet.category,
             name:pet.name,

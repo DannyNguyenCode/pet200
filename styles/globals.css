@@ -30,12 +30,7 @@
 
 .app {
   /* @apply relative z-10 flex justify-center items-center flex-col mx-auto ; */
-  @apply justify-center items-center flex flex-col; 
-}
-
-.content_wrapper{
-  /* @apply max-w-7xl; */
-
+  /* @apply justify-center items-center flex flex-col;  */
 }
 
 .blue_gradient {
@@ -62,25 +57,14 @@
   text-transform: capitalize
 }
 
-.content{
-  /* display: flex;
-  flex-direction: row;
-  float: left; */
-
-}
-.card_text_container{
+/* .card_text_container{
   float: left ;
   width: 2500px;
-}
+} */
 .full_width{
   width: 100%;
 }
-.card_text{
-}
 
-.nav{
-
-}
 .checklist_header{
   height: 80px !important;
   width: 100%;
@@ -100,10 +84,7 @@
   align-self: flex-end;
 }
 
-.profile_image{
-  /* display: block;
-  margin: auto; */
-}
+
 .border{
   border: 1 solid black;
 }
@@ -121,4 +102,37 @@
     cursor: pointer;
     margin-bottom: 20px;
   }
+}
+
+#dashboard{
+  justify-content:space-around;
+}
+
+#contentWrapper{
+  justify-content:center;
+  margin-top: 4rem;
+
+}
+.filterPaperWrapper{
+  text-align: center;
+}
+
+.radio-customization{
+  padding: 2px !important;
+  color: rgba(0, 0, 0, 0.5) !important; 
+}
+.checkbox-customization{
+  padding: 2px !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+.loadedImage{
+  /* width: 300px !important;
+  max-height: 650px !important; */
+}
+.modalProfileWrapper{
+  /* justify-content: space-around; */
+
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
