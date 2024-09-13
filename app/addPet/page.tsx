@@ -34,9 +34,6 @@ const AddPet = () => {
         e.preventDefault();
         let result;
         setSubmitting(true);
-        console.log("check9===========================")
-        console.log("pet",pet)
-        console.log("imageFile",imageFile)
 
         try {
 

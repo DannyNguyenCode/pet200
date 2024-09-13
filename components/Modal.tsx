@@ -11,12 +11,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
 import { Pet } from '@interfaces/pet';
-import {ThemeProvider, Box } from '@mui/material';
+import {ThemeProvider } from '@mui/material';
 import Grid from '@mui/material/Grid2'
 import dancingScript from '@styles/dancingScriptTheme'
 import Image from 'next/image';
 import Checklist from './Checklist';
-import checkListHeaderTheme from '@styles/checkListHeaderTheme';
 import optimizingImage from '@utils/optimizeImage';
 
 const Transition = forwardRef(function Transition(

@@ -1,6 +1,6 @@
 'use client'
 import NewPasswordForm from '@components/NewPasswordForm'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import LoadingPage from '@components/LoadingPage'
 import { toast } from 'react-toastify'
 import { ToastContainer } from 'react-toastify'

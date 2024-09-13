@@ -14,7 +14,6 @@ export const upLoadToCloudinary = async(
                 use_filename:true
             }
         )
-        console.log("result inside cloudinary",result)
         if(result){
             return result
         }

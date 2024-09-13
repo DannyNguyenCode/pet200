@@ -24,7 +24,6 @@ const getBlobFromCanvas = (canvas:any, file:any, withUrl:any) =>
     });
   
   const cropImage = async (imageElm:any, file:any, crop:Area, withUrl = false) => {
-    console.log("cropImage")
     const canvas = document.createElement("canvas"),
       scaleX = imageElm.naturalWidth / imageElm.width,
       scaleY = imageElm.naturalHeight / imageElm.height,

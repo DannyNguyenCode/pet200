@@ -7,9 +7,6 @@ export const uploadStagedFile = async(stagedFile:File | Blob)=>{
             body:form
         })
         let result = await postImage.json();
-        console.log("check============================")
-        console.log("result",result)
-        console.log("result.imgUrl",result.url)
         return result
     }catch(err){
         console.log(err)

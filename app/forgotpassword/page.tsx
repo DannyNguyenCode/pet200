@@ -1,7 +1,7 @@
 'use client'
 import { getCurrentDate } from '@utils/date'
 import React from 'react'
-import { useEffect,useState } from 'react'
+import { useState } from 'react'
 import ForgotPasswordForm from '@components/ForgotPasswordForm'
 import { useRouter } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify';

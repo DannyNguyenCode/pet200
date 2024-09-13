@@ -1,13 +1,12 @@
 'use client'
-import { Box, ThemeProvider,Typography, Button } from '@mui/material'
+import { Box, ThemeProvider,Typography } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import {getDancingScript,getAclonica} from '@styles/profileTheme'
-import { useEffect,useState } from 'react'
+import { useEffect } from 'react'
 import { Pet } from '@interfaces/pet'
 import CardTemplate from './CardTemplate'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { AddPetButton } from '@styles/buttonThemes'
-import { useSession } from 'next-auth/react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Profile = (

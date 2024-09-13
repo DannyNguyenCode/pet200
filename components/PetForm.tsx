@@ -2,20 +2,14 @@
 import { useState } from 'react';
 import { Pet } from '@interfaces/pet'
 import Grid from '@mui/material/Grid2';
-
-
 import { FormControl,Box, Typography, Divider} from '@mui/material'
-
 import Button from '@mui/material/Button';
-
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import smartcrop from 'smartcrop'
 import cropImage from '@utils/upload/cropImage';
-import { Area } from 'react-easy-crop';
 import { smartCropResult } from '@interfaces/smartCropResult';
-import { resolve } from 'path';
 const PetForm = ({
   handleSubmit,
   setPet,
@@ -90,17 +84,12 @@ const PetForm = ({
   const [valueGender, setValueGender] = useState<string | null>(pet.gender === ''? null : pet.gender);
   const [inputValueGender, setInputValueGender] =useState('');
   const [secondaryColor,setSecondaryColor]=useState<string>('');
-  const [croppedUrl, setCroppedUrl] = useState<any>(null);
-  const [cropped, setCropped] = useState<any>(null);
   const [imgPath,setImgPath]=useState<string>('')
-  const [imageWidth,setImageWidth]=useState<number>(0);
-  const [imageHeight,setImageHeight]=useState<number>(0)
+
 
   const onImageSelected = async (e:any)=>{
     e.preventDefault();
-    console.log("onImageSelected")
     let selectedFile = e.target.files[0];
-    let reader = new FileReader();
     let image = new Image();
     let blobToImagePath = new FileReader();
 
@@ -124,34 +113,22 @@ const PetForm = ({
       height=Math.ceil(height/100)*100
       width=width+100
       height=height+100
-      // console.log("check================================")
-      // console.log("selectedFile",selectedFile)
-      // console.log("e",e)
+
       const onLoadCrop = async () => {
-        console.log("onLoadCrop")
         const { blob, blobUrl, revokeUrl }:any = await cropImage(
           image, //image
           selectedFile, // file
           smartCropResult, // crop area
           true // with url
         );
-        console.log("check7===============================")
-        console.log("blob",blob)
-        console.log("blobUrl",blobUrl)
-        console.log("revokeUrl",revokeUrl)
+
         blobToImagePath.readAsDataURL(blob)
         let blobToFile = new File([blob],blob.name,{ type: "image/jpeg"})
-        console.log("blobToFile",blobToImagePath)
-        console.log(typeof blobToFile);
-        console.log("blobToFile", blobToFile);
         setImageFile(blobToFile as File)
        
         
       };
-      console.log("before onload")
       blobToImagePath.onload = function(event) {
-        console.log("onload")
-        console.log("event",event)
         if(event && event.target && event.target.result){
           setImgPath(event?.target?.result as string)
 
@@ -164,12 +141,7 @@ const PetForm = ({
         smartCropResult.x = result.topCrop.x
         smartCropResult.y = result.topCrop.y
         onLoadCrop();
-        console.log("imgPath",imgPath)
-        setImageWidth(result.topCrop.width);
-        setImageHeight(result.topCrop.height)
       })
-      // reader.readAsDataURL(selectedFile);
-      // console.log("reader",reader);
   
    
     }
@@ -180,21 +152,6 @@ const PetForm = ({
     }
 
   }
-  const setCropForItem = (id:any, data:any) => {
-    setCropped(() => ({ id, data }));
-  };
-
-  // useRequestPreSend(({ items }) => {
-  //   return {
-  //     items: [
-  //       {
-  //         ...items[0],
-  //         //change the request's file to the cropped image
-  //         file: cropped.data
-  //       }
-  //     ]
-  //   };
-  // });
 
   const textFieldSize = 200
   const minLabelField = 125

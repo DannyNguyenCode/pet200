@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { Box,FormControl,Button,Stack,TextField, Divider,InputAdornment } from '@mui/material'
+import { Box,FormControl,Stack,TextField,InputAdornment } from '@mui/material'
 import { Typography,Link } from '@mui/material'
 import { registerPasswordSchema } from '@utils/registerPasswordSchema';
 import { LoadingButton } from '@mui/lab';

@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { FormControl, TextField,Button, Box, ThemeProvider, Stack, Typography, Divider} from '@mui/material'
-import { auth } from "../auth"
+import { FormControl, TextField,Button, Box, Stack, Typography, Divider} from '@mui/material'
 import {signIn} from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import GoogleIcon from '@mui/icons-material/Google';

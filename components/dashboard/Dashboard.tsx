@@ -1,10 +1,7 @@
 'use client'
 import { Pet } from '@interfaces/pet'
-import CardTemplate from '../CardTemplate'
 import { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid2'
-import { shuffle } from '@utils/shuffle'
-import {Masonry} from '@mui/lab/';
 import FilterBar from "@components/dashboard/FilterBar";
 import MasonryWrapper from './MasonryWrapper'
 const Dashboard = () => {
