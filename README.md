@@ -25,3 +25,5 @@ Application goal is to find pets a new home, whether you are looking to adopt or
 - tailwindcss - v3.4.1
 - react-verification-input - v4.1.2
 - zod - v3.23.8
+- smartcrop - v2.0.5
+- cloudinary - v2.4.0

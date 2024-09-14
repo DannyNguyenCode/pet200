@@ -13,13 +13,15 @@ import { Stack,Typography } from '@mui/material'
 const AddPet = () => {
     const {data:session} = useSession();
     const [imageFile,setImageFile]= useState<File>()
+    const [originalImage,setOriginalImage]=useState<File>();
     const router = useRouter();
     const [pet,setPet]=useState<Pet>({
         _id:0,
         category:'',
         name:'',
         gender:'',
-        image:'',
+        originalImage:'',
+        croppedImage:'',
         breed:'',
         age:'',
         primaryColor:'',
@@ -32,13 +34,17 @@ const AddPet = () => {
 
     const addPet = async(e:any)=>{
         e.preventDefault();
-        let result;
+        let originalResult;
+        let croppedResult
         setSubmitting(true);
 
         try {
+            if(originalImage){
+                originalResult = await uploadStagedFile(originalImage)
+            }
 
             if(imageFile){
-                result = await uploadStagedFile(imageFile)
+                croppedResult = await uploadStagedFile(imageFile)
             }else{
                 toast('Please upload an image of your pet.')
                 return;
@@ -50,7 +56,8 @@ const AddPet = () => {
                         category:pet.category,
                         name:pet.name,
                         gender:pet.gender,
-                        image:result.secure_url,
+                        originalImage:originalResult.secure_url,
+                        croppedImage:croppedResult.secure_url,
                         breed:pet.breed,
                         age:parseFloat(pet.age),
                         primaryColor:pet.primaryColor,
@@ -78,6 +85,7 @@ const AddPet = () => {
                     setPet={setPet}
                     pet={pet}
                     setImageFile={setImageFile}
+                    setOriginalImage={setOriginalImage}
                     toastContainer={<ToastContainer theme='dark'/>}/>
             </Stack>
     

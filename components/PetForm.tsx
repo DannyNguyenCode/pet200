@@ -15,6 +15,7 @@ const PetForm = ({
   setPet,
   pet,
   setImageFile,
+  setOriginalImage,
   toastContainer,
 
 }:{
@@ -22,6 +23,7 @@ const PetForm = ({
   setPet:(pet:Pet)=>void,
   pet:Pet,
   setImageFile:(imageFile:File)=>void,
+  setOriginalImage:(imageFile:File)=>void,
   toastContainer:any
 
 
@@ -87,6 +89,7 @@ const PetForm = ({
   const [imgPath,setImgPath]=useState<string>('')
 
 
+
   const onImageSelected = async (e:any)=>{
     e.preventDefault();
     let selectedFile = e.target.files[0];
@@ -131,6 +134,7 @@ const PetForm = ({
       blobToImagePath.onload = function(event) {
         if(event && event.target && event.target.result){
           setImgPath(event?.target?.result as string)
+          setOriginalImage(selectedFile)
 
         }   
       };

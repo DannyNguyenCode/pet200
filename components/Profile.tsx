@@ -31,16 +31,15 @@ const Profile = (
   return (
 
       <Grid container>
-      <ToastContainer theme="dark"/>
+          <ToastContainer theme="dark"/>
           <Grid size={12} textAlign={'center'} >
               <ThemeProvider theme={getAclonica()}>
                 <Typography style={{margin: getAclonica().spacing(3)}} component={"h1"}><span>Danny's Profile</span></Typography>
               </ThemeProvider>
           </Grid>
         
-          <Grid className='border p-4' size={{xs:12, md:6}}>
-              <Grid container size={{xs:12, md:4}}  columns={{xs:1, md:2}}>      
-                  <Grid size={{xs:12, md:4}}  >
+          <Grid className='border p-4' container size={{xs:12, md:6}}>            
+                  <Grid size={{xs:12}}  >
                       <ThemeProvider theme={getDancingScript()}>
                         <Typography className='pl-4' component={"h1"}><span>About</span></Typography>
                       </ThemeProvider>
@@ -51,18 +50,14 @@ const Profile = (
                         </Typography>
                       </Typography>
                   </Grid>               
-              </Grid>
           </Grid>
 
      
-          <Grid className='border p-4' size={{xs:12, md:6}}>
-              <Grid container size={{xs:12, md:6}} columns={{xs:1, md:2}}>
-                <Grid size={{xs:12, md:6}} >
+          <Grid className='border p-4' container size={{xs:12, md:6}}>
+                <Grid size={{xs:12}} >
                     <ThemeProvider theme={getDancingScript()}>
                       <Typography className='pl-4' component={"h1"} ><span className=''>Contact</span></Typography>
                     </ThemeProvider>
-
-
                     <Typography className='address pl-4' component={"p"}>           
                         <Typography component={"span"}>Address: </Typography> <Typography component={"span"}>123 Fake Street, Toronto Ontario, M94 3Y6</Typography>           
                     </Typography>
@@ -78,44 +73,30 @@ const Profile = (
                         <Typography component={"span"}>Website: </Typography><Typography component={"span"}>www.petfoundation.com</Typography>
                     </Typography>
                 </Grid>
-              </Grid>
           </Grid>
-
-          <Grid className='border p-4' size={{xs:12}}>
-            <Grid container columns={{xs:1, md:2}}>
-              <Grid size={{xs:12}}>
-                <Grid container>
-                  <Grid size={{xs:12, md:2}}>
-                      <ThemeProvider theme={getDancingScript()}>
-                          <Typography className='pl-4' component={"h1"}><span className=''>Current Pets</span></Typography>
-                      </ThemeProvider>
-                  </Grid>
-                  <Grid alignContent={'center'} size={{xs:12, md:2}}>
-
-                      <AddPetButton LinkComponent={'a'} href='/addPet' onClick={()=>{}} variant="outlined" size='medium' endIcon={<AddCircleOutlineIcon />}>Add Pet</AddPetButton>
-
-                  </Grid>
-                </Grid>
-
-
-              </Grid>
-
-              <Grid size={{xs:12}}>
-                <Grid container className=''>
-                  {pets.map((pet,i)=>{
-                    return(
-                      <Grid key={pet._id} size={{xs:12,md:3}}>
-                        <Box sx={{height:'auto'}}>
-                          <CardTemplate i={i} data={pet} isMasonry={false}/>
-                        </Box>
-                      </Grid>
-                    )
-                  })}
-
-                </Grid>
-              </Grid>
+          <Grid container size={12}>
+            <Grid size={{xs:6}}>
+                <ThemeProvider theme={getDancingScript()}>
+                    <Typography className='pl-4' component={"h1"}><span className=''>Current Pets</span></Typography>
+                </ThemeProvider>
             </Grid>
+            <Grid alignContent={'center'} size={{xs:6}}>
+                <AddPetButton LinkComponent={'a'} href='/addPet' onClick={()=>{}} variant="outlined" size='medium' endIcon={<AddCircleOutlineIcon />}>Add Pet</AddPetButton>
+            </Grid>  
           </Grid>
+          <Grid className='p-4' spacing={2} container size={{xs:12}}>
+
+            {pets.map((pet,i)=>{
+              return(
+                <Grid key={pet._id} size={{xs:12,md:2}}>
+              
+                    <CardTemplate i={i} data={pet} isMasonry={false}/>
+               
+                </Grid>
+              )
+            })}  
+          </Grid>
+
 
          
       </Grid>

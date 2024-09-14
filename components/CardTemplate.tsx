@@ -26,7 +26,7 @@ const CardTemplate =({data, i, isMasonry}:{data:Pet, i:number, isMasonry?:boolea
                         <Image 
                           height={`${400}`}
                           width={200}
-                          src={`${optimizeImage(data.image)}`}
+                          src={`${optimizeImage(isMasonry?data.originalImage: data.croppedImage)}`}
                           alt="pet image placeholder"
                           priority={true}
                           layout="responsive"
@@ -50,7 +50,7 @@ const CardTemplate =({data, i, isMasonry}:{data:Pet, i:number, isMasonry?:boolea
 
                 <CardActions>
 
-                  <FullScreenDialog data={data} image={`${data.image}`}/>
+                  <FullScreenDialog data={data} image={`${data.croppedImage}`}/>
 
               </CardActions>
           </Card>

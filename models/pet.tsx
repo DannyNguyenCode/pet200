@@ -10,7 +10,10 @@ const PetSchema = new Schema({
     gender:{
         type:String
     },
-    image:{
+    originalImage:{
+        type:String
+    },
+    croppedImage:{
         type:String
     },
     breed:{
