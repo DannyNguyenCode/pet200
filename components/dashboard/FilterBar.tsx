@@ -167,6 +167,7 @@ const FilterBar = ({
                   </FormGroup>  
                 </FormControl>
             </Paper>
+            {colorFilters.length > 0?
             <Paper elevation={1} className='filterPaperWrapper'>
                 <FormControl variant="outlined">
                   <FormLabel focused={false}>Color</FormLabel>
@@ -185,8 +186,8 @@ const FilterBar = ({
 
                   </FormGroup>  
                 </FormControl>
-            </Paper>
-                  
+            </Paper>:<></>
+               }   
             <Paper elevation={1} className='filterPaperWrapper'>
                 <FormControl variant="outlined">
                   <FormLabel focused={false}>Age</FormLabel>
