@@ -110,7 +110,7 @@
 
 #contentWrapper{
   justify-content:center;
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
 
 }
 .filterPaperWrapper{
@@ -120,10 +120,12 @@
 .radio-customization{
   padding: 2px !important;
   color: rgba(0, 0, 0, 0.5) !important; 
+  pointer-events: auto;
 }
 .checkbox-customization{
   padding: 2px !important;
   color: rgba(0, 0, 0, 0.5) !important;
+  pointer-events: auto;
 }
 .loadedImage{
   /* width: 300px !important;
@@ -135,4 +137,43 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+
+.stickyComponentContainer{
+  position: sticky;
+  top: 25%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#filterbarWrapper{
+
+}
+.formControlLabel-custom{
+  pointer-events: none;
+}
+
+#masonryWrapper{
+  margin-top: 2rem;
+}
+#dashboardTitle{
+  color: white;
+  /* padding-top: 2rem; */
+  text-align: center;
+  width: 100%;
+  background-color: #1976d2;
+  
+}
+#dashboardTitle > p{
+  padding: 1rem;
+}
+.centerOneLineText{
+  height: inherit;
+  line-height: inherit;
+}
+
+#dashboardDivider{
+  height: 0.5rem;
+  color: white;
 }

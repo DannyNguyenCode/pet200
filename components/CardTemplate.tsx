@@ -14,7 +14,7 @@ import optimizeImage from '@utils/optimizeImage'
 const CardTemplate =({data, i, isMasonry}:{data:Pet, i:number, isMasonry?:boolean}) => {
 
   return (
-            <Card raised id='cardContainer'>
+            <Card className='cardContainer'>
                   <ThemeProvider theme={dancingScript}>
                       <Typography className={`card_header capitalize pl-4 py-1 text-center`} gutterBottom variant="h5" component="div">
                           {data.name}
@@ -26,7 +26,7 @@ const CardTemplate =({data, i, isMasonry}:{data:Pet, i:number, isMasonry?:boolea
                         <Image 
                           height={`${400}`}
                           width={200}
-                          src={`${optimizeImage(isMasonry?data.originalImage: data.croppedImage)}`}
+                          src={`${optimizeImage(data.croppedImage)}`}
                           alt="pet image placeholder"
                           priority={true}
                           layout="responsive"
@@ -38,10 +38,10 @@ const CardTemplate =({data, i, isMasonry}:{data:Pet, i:number, isMasonry?:boolea
           
                   <CardContent>
                     <Typography variant="body2" className="capitalize pb-2" color="text.secondary">
-                      {data.category}
+                      {data.category} - {data.breed}
                     </Typography>
                     <Typography variant="body2" className="capitalize pb-2" color="text.secondary">
-                      {data.breed} - {data.gender} - {data.primaryColor}
+                    {data.gender} - {data.primaryColor}
                     </Typography>
                     <Typography variant="body2" className="" color="text.secondary">
                       Age: {data.age} years old
