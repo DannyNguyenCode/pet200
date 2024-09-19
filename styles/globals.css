@@ -160,13 +160,22 @@
 #dashboardTitle{
   color: white;
   /* padding-top: 2rem; */
-  text-align: center;
-  width: 100%;
-  background-color: #1976d2;
+  /* text-align: center; */
+
   
 }
-#dashboardTitle > p{
-  padding: 1rem;
+.dashboardTitleCtonainer{
+  width: 100%;
+  background-color: #1976d2;
+}
+#dashboardTitle{
+  display: block;
+  font-size: 1.17em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
 }
 .centerOneLineText{
   height: inherit;
@@ -175,5 +184,9 @@
 
 #dashboardDivider{
   height: 0.5rem;
+  color: white;
+}
+
+.scrollingPetNames{
   color: white;
 }

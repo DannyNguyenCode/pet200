@@ -6,6 +6,7 @@ import FilterBar from "@components/dashboard/FilterBar";
 import MasonryWrapper from './MasonryWrapper'
 import StickyComponent from '@components/StickyComponent';
 import { Box, Divider, Typography } from '@mui/material';
+import TextScrollComponent from '@components/TextScrollComponent/TextScrollComponent';
 const Dashboard = () => {
     const [pets,setPets]=useState<Pet[]>([])
     const [filterPets,setFilteredPets]=useState<Pet[]>([])
@@ -30,7 +31,12 @@ const Dashboard = () => {
   return (
     <Grid container id='dashboard' columnSpacing={2} size={{xs:12}}>
         <Divider id='dashboardDivider'/>
-        <Typography id='dashboardTitle' variant='h4'><Box component={'p'}>Welcome to Pet 200</Box></Typography>
+        <Box className='dashboardTitleCtonainer'>
+          <TextScrollComponent>
+            <Box id='dashboardTitle' component={'p'}>Welcome to Pet 200</Box>
+
+          </TextScrollComponent>
+        </Box>
         <Grid id='filterbarWrapper'sx={{
           marginBottom:{
             xs:'2rem',
