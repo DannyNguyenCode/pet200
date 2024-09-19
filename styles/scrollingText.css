@@ -7,7 +7,7 @@
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
-    animation: marquee 15s linear infinite;
+    animation: marquee 20s linear infinite;
   }
   
   .marquee p {
@@ -17,9 +17,9 @@
   
   @keyframes marquee {
     0% {
-        -moz-transform: translateX(100%);
-        -webkit-transform: translateX(100%);
-        transform: translateX(700%);
+        -moz-transform: translateX(1100%);
+        -webkit-transform: translateX(1100%);
+        transform: translateX(1100%);
     }
     100% {
         -moz-transform: translateX(-100%);
