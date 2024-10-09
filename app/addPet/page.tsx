@@ -8,7 +8,8 @@ import { uploadStagedFile } from '@utils/upLoadStagedFile'
 import { toast } from 'react-toastify'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { Stack,Typography } from '@mui/material'
+import { Stack,Box,Divider, Typography } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 
 const AddPet = () => {
     const {data:session} = useSession();
@@ -77,17 +78,31 @@ const AddPet = () => {
         }
     }
     return (
-      
-            <Stack spacing={2} direction={'column'}>
-                <Typography className='py-4' textAlign={'center'} variant={'h3'}>Create Pet Profile</Typography>
-                <PetForm
-                    handleSubmit={addPet}
-                    setPet={setPet}
-                    pet={pet}
-                    setImageFile={setImageFile}
-                    setOriginalImage={setOriginalImage}
-                    toastContainer={<ToastContainer theme='dark'/>}/>
-            </Stack>
+      <Grid container justifyContent={'center'}>
+        <Grid size={{xs:12}}>
+            <Divider className='dividerCustom'/>
+            <Box className='dashboardTitleCtonainer'>
+    
+                <Box className='titleCustom' component={'p'}>Create Pet Profile</Box>
+
+            </Box>
+        </Grid>
+
+        <Grid className='verticalHorizontalCenter' size={{xs:12,md:6}} >
+
+            <PetForm
+                handleSubmit={addPet}
+                setPet={setPet}
+                pet={pet}
+                setImageFile={setImageFile}
+                setOriginalImage={setOriginalImage}
+                toastContainer={<ToastContainer theme='dark'/>}
+                submitting={submitting}
+            />
+
+        </Grid>
+      </Grid>
+
     
         
 

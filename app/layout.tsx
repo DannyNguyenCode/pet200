@@ -21,9 +21,6 @@ const RootLayout=({
         <body>
           <Provider>
             <AppRouterCacheProvider>
-                  <div className="main">
-                    <div></div>
-                  </div>
                   <main className="app">
                       <Nav/>
                       <ContentWrapper>

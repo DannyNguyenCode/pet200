@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Pet } from '@interfaces/pet'
 import Grid from '@mui/material/Grid2';
-import { FormControl,Box, Typography, Divider} from '@mui/material'
+import { FormControl,Box, Typography, Divider,Link} from '@mui/material'
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -10,6 +10,8 @@ import TextField from '@mui/material/TextField';
 import smartcrop from 'smartcrop'
 import cropImage from '@utils/upload/cropImage';
 import { smartCropResult } from '@interfaces/smartCropResult';
+import { LoadingButton } from '@mui/lab';
+import { useRouter } from 'next/navigation';
 const PetForm = ({
   handleSubmit,
   setPet,
@@ -17,6 +19,7 @@ const PetForm = ({
   setImageFile,
   setOriginalImage,
   toastContainer,
+  submitting
 
 }:{
   handleSubmit:(e:any)=>void,
@@ -25,6 +28,7 @@ const PetForm = ({
   setImageFile:(imageFile:File)=>void,
   setOriginalImage:(imageFile:File)=>void,
   toastContainer:any
+  submitting:boolean
 
 
 
@@ -87,7 +91,7 @@ const PetForm = ({
   const [inputValueGender, setInputValueGender] =useState('');
   const [secondaryColor,setSecondaryColor]=useState<string>('');
   const [imgPath,setImgPath]=useState<string>('')
-
+  const router = useRouter();
 
 
   const onImageSelected = async (e:any)=>{
@@ -166,8 +170,8 @@ const PetForm = ({
   return (
     <Box className='w-full flex-center content_wrapper' component={'form'} onSubmit={handleSubmit}>
       <FormControl className='w-full'>
-        <Grid container className='w-full' alignItems="center" direction={'column'} justifyContent='center'>
-            <Grid size={{xs:12}}>
+        <Grid container className='w-full' alignItems="center" direction={'row'} justifyContent='center'>
+            <Grid size={{xs:12,md:6}}>
               <Stack direction={'column'} spacing={1}>
                 <label>
                   <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
@@ -325,9 +329,9 @@ const PetForm = ({
               </Stack>
             </Grid>
             <Divider className='py-2'/>
-            <Grid size={{xs:12}}>
+            <Grid size={{xs:12,md:6}}>
               <Stack spacing={2} direction={'column'}>
-                <Box textAlign={'center'}>
+                <Box display={'flex'} justifyContent={'space-evenly'} textAlign={'center'}>
                   <Button
                     variant="contained"
                     component="label"
@@ -343,9 +347,11 @@ const PetForm = ({
                       onChange={(e:any)=>onImageSelected(e)}
                     />
                   </Button>
-                </Box>
+                  {imgPath ?<LoadingButton size="medium"type='submit'loading={submitting}variant="contained"onClick={()=>setImgPath('')}>Cancel</LoadingButton>:<></>}
 
-                    <img width={500} height={500} src={imgPath} alt='test'/>
+                </Box>
+               
+                   {imgPath ? <img width={500} height={500} src={imgPath} alt='image of uploaded pets'/>:<><Typography textAlign={'center'}>Your uploaded images are automatically cropped using AI.</Typography><Typography textAlign={'center'}> Powered by: <Link target="_blank" rel="noopener" href=' https://github.com/jwagner/smartcrop.js'> https://github.com/jwagner/smartcrop.js</Link></Typography> </> }
               </Stack>
             </Grid>
       
@@ -353,9 +359,7 @@ const PetForm = ({
             <Button type='submit' variant="contained">
               Submit
             </Button>
-            <Button variant="contained">
-              Cancel
-            </Button>
+
           </Stack>
           {toastContainer}
           </Grid>

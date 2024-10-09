@@ -157,13 +157,7 @@
 #masonryWrapper{
   margin-top: 2rem;
 }
-#dashboardTitle{
-  color: white;
-  /* padding-top: 2rem; */
-  /* text-align: center; */
 
-  
-}
 .dashboardTitleCtonainer{
   width: 100%;
   background-color: #1976d2;
@@ -176,6 +170,7 @@
   margin-left: 0;
   margin-right: 0;
   font-weight: bold;
+  color: white;
 }
 .centerOneLineText{
   height: inherit;
@@ -186,7 +181,36 @@
   height: 0.5rem;
   color: white;
 }
+.dividerCustom{
+  height: 0.5rem;
+  color: white; 
+}
+.titleCustom{
+  display: block;
+  font-size: 1.3em;
+  text-align: center;
+  font-weight: bold;
+  color: white; 
+  padding: 10px;
+}
 
 .scrollingPetNames{
   color: white;
+}
+.seperate{
+  height: 4rem;
+}
+
+.verticalHorizontalCenter{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 123.2px);
+}
+
+@media (max-width: 992px) { 
+  .verticalHorizontalCenter{
+
+    height: 100vh;
+  }
 }

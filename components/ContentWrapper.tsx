@@ -1,15 +1,15 @@
 'use client'
 import React from 'react'
-import Grid from '@mui/material/Grid2'
+import { Box } from '@mui/material';
 const ContentWrapper = ({
     children,
   }: Readonly<{
     children: React.ReactNode;
   }>) => {
   return (
-    <Grid id='contentWrapper' container>
+    <Box id='contentWrapper' >
         {children}
-    </Grid>
+    </Box>
   )
 }
 

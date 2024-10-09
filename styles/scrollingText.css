@@ -27,3 +27,16 @@
         transform: translateX(-100%);
     }
   }
+  @media (max-width: 992px) { 
+    .marqueeWrapper {
+      max-width: 100%;
+      text-align: center;
+    }   
+    .marquee {
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: none;
+
+    }
+  }
