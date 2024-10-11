@@ -15,7 +15,8 @@ const Dashboard = () => {
         const fetchPets = async()=>{
           try{
             const res = await fetch('/api/pet',{
-              cache:'no-cache'
+              cache:'no-store',
+              next: { revalidate: 0 }
             });
             const data:Pet[] = await res.json();
   
