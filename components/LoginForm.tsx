@@ -45,6 +45,9 @@ const LoginForm = ({
   return (
     <Box className='content_wrapper loginform' sx={{
       margin:'12rem',
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center'
     }} component={'form'}>
         <FormControl sx={{padding:'1rem'}} className='loginFormControl'>
           <Stack spacing={4}>

@@ -79,6 +79,10 @@ const NewPasswordForm = (
   return (
     <Box className='content_wrapper' sx={{
       margin:'12rem',
+      display:'flex',
+      justifyContent:'center',
+      alignItems:'center'
+
     }} component={'form'} onSubmit={onSubmit}>
     
         <FormControl sx={{padding:'1rem'}}>

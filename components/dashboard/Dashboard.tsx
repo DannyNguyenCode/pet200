@@ -7,6 +7,7 @@ import MasonryWrapper from './MasonryWrapper'
 import StickyComponent from '@components/StickyComponent';
 import { Box, Divider, Typography } from '@mui/material';
 import TextScrollComponent from '@components/TextScrollComponent/TextScrollComponent';
+export const revalidate = 0 // seconds
 const Dashboard = () => {
     const [pets,setPets]=useState<Pet[]>([])
     const [filterPets,setFilteredPets]=useState<Pet[]>([])
