@@ -14,7 +14,9 @@ const Dashboard = () => {
     useEffect(()=>{
         const fetchPets = async()=>{
           try{
-            const res = await fetch('/api/pet');
+            const res = await fetch('/api/pet',{
+              cache:'no-cache'
+            });
             const data:Pet[] = await res.json();
   
 

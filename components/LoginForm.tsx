@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { FormControl, TextField,Button, Box, Stack, Typography, Divider} from '@mui/material'
+import { FormControl, TextField,Button, Box, Stack, Typography, Divider,InputAdornment} from '@mui/material'
 import {signIn} from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -8,6 +8,9 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import Link from '@mui/material/Link';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import {IconButton} from '@mui/material';
 const LoginForm = ({
   message,
   email,
@@ -25,6 +28,7 @@ const LoginForm = ({
 }) => {
   const router = useRouter();
   const [loginErrorMessage,setLoginErrorMessage]=useState('')
+  const [showPassword,setShowPassword]=useState(false)
   useEffect(()=>{
 
     if(message && message[0] === "SR"){
@@ -49,7 +53,25 @@ const LoginForm = ({
           </Stack>
           <Stack spacing={2}>
             <TextField sx={{ width: '20rem' }} value={email} onChange={(e:any)=>setEmail(e.target.value)} label="Email" variant="outlined" color="info" />
-            <TextField sx={{ width: '20rem' }} value={password} onChange={(e:any)=>setPassword(e.target.value)} label="Password" variant="outlined" color="info"/>
+            <TextField 
+                  required 
+                  sx={{ width: '20rem' }} 
+                  value={password} 
+                  type={showPassword?'text':'password'}
+                  onChange={(e:any)=>{
+                    setPassword(e.target.value)
+             
+                    }}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          {showPassword?<IconButton onClick={()=>setShowPassword(false)}><VisibilityIcon/></IconButton>:<IconButton onClick={()=>setShowPassword(true)}><VisibilityOffIcon/></IconButton>}
+                        </InputAdornment>
+                      ),
+                    }} 
+                  label="Password"
+                  variant="outlined"
+                  color="info"/>
             <Button onClick={()=>{
                 signIn("credentials",{redirect:false, email:email,password:password}).then((res:any)=>{
                   if(res.error === "CredentialsSignin"){
