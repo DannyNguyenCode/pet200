@@ -9,7 +9,7 @@ const StickyComponent = ({
     children: React.ReactNode;
   }>) => {
   return (
-    <Box className='stickyComponentContainer'>
+    <Box className='stickyComponentContainerHorizontal'>
 
             {children}
 

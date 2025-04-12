@@ -1,5 +1,5 @@
 'use client'
-import { forwardRef, useState, Fragment, useEffect } from 'react';
+import { forwardRef, useState } from 'react';
 import Button from '@mui/material/Button';
 
 import Dialog from '@mui/material/Dialog';
@@ -69,13 +69,13 @@ const FullScreenDialog=({data,image}:{data:Pet, image:string})=> {
         </AppBar>
  
         <Grid className='modalProfileWrapper' container>
-            <Grid size={{xs:1,md:3}}>
+            <Grid justifyContent={'center'} display={'flex'} textAlign={'center'} size={{xs:12,md:4}}>
           
-              <Image height={`${400}`} width={200} className='profile_image' alt={`${data.name}'s profile picture`} src={optimizingImage(image)} />
+              <Image height={300} width={300} className='profile_image' alt={`${data.name}'s profile picture`} src={optimizingImage(image)} />
       
             </Grid>
             
-            <Grid size={{xs:1,md:'grow'}}>
+            <Grid size={{xs:12,md:'grow'}}>
               <Checklist data={data}/>
             </Grid>   
         </Grid>

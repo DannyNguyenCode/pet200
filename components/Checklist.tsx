@@ -10,18 +10,18 @@ const Checklist = ({data}:{data:Pet}) => {
 
   return (
       <Box>
-          <Grid container>
-            <Grid className='' size={{xs:1}} ></Grid>
-            <Grid className='' size={10} >
+          <Grid sx={{paddingX:'1em'}} container>
+   
+            <Grid className='' size={12} >
               <ThemeProvider theme={checkListHeaderTheme}>
                   <Typography component={"h1"} className='checklist_header' ><span className='checklist_header_span'>Characteristics</span></Typography>
               </ThemeProvider>
             </Grid>
-            <Grid className='' size={1}></Grid>
+
           </Grid>
-          <Grid container>
-            <Grid className='' size={1}></Grid>
-            <Grid size={10}>                         
+          <Grid sx={{paddingX:'1em'}} container>
+
+            <Grid size={12}>                         
                 <Typography className='checklist_lines' component={"p"} style={{height:"30px"}}>
                   <Typography className='checklist_lines_span capitalize' component={"span"}>
                     Breed: {data.breed}
@@ -51,15 +51,13 @@ const Checklist = ({data}:{data:Pet}) => {
                     Secondary Colors: {data.secondaryColor.join(', ')}
                   </Typography>
                 </Typography>
-                <Divider/>
-                <Typography className='checklist_lines' component={"p"} style={{height:"30px"}}>
+                <Divider sx={{marginBottom:'1em'}}/>
                   <Typography className='checklist_lines_span capitalize' component={"span"}>
-                    Description: {data.desc}
+                    Description: {data.desc} Here is a line of text that can overflow
                   </Typography>
-                </Typography>
-                <Divider/>
+
             </Grid>
-              <Grid className='' size={1}></Grid>
+
           </Grid>
       </Box>
   )

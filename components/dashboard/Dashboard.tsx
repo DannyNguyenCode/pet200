@@ -35,7 +35,7 @@ const Dashboard = () => {
   return (
     <Grid container id='dashboard' columnSpacing={2} size={{xs:12}}>
         <Divider id='dashboardDivider'/>
-        <Box className='dashboardTitleCtonainer'>
+        <Box sx={{marginBottom:{xs:'0',md:'2rem'}}} className='dashboardTitleCtonainer'>
           <TextScrollComponent>
             <Box id='dashboardTitle' component={'p'}>Welcome to Pet 200</Box>
 
@@ -43,15 +43,15 @@ const Dashboard = () => {
         </Box>
         <Grid id='filterbarWrapper'sx={{
           marginBottom:{
-            xs:'2rem',
+            xs:'0rem',
             md:'0rem'
           }
-        }} size={{xs:12,md:2}}>
+        }} size={{xs:12,md:10}}>
             <StickyComponent>
               <FilterBar setFilterData={setFilteredPets} petData={pets}/>
             </StickyComponent>
         </Grid>
-        <Grid container id='masonryWrapper' size={{xs:12,md:8}}>
+        <Grid sx={{margin:{xs:'0',md:'2rem'}}} container id='masonryWrapper' size={{xs:12,md:10}}>
           <MasonryWrapper filterPets={filterPets}/>
         </Grid>
     </Grid>

@@ -105,7 +105,7 @@
 }
 
 #dashboard{
-  justify-content:space-around;
+  justify-content:center;
 }
 
 #contentWrapper{
@@ -131,6 +131,9 @@
   /* width: 300px !important;
   max-height: 650px !important; */
 }
+.cardContainer{
+  width: 100%;
+}
 .modalProfileWrapper{
   /* justify-content: space-around; */
 
@@ -139,15 +142,23 @@
   align-content: center;
 }
 
-.stickyComponentContainer{
+.stickyComponentContainerVertical{
   position: sticky;
   top: 25%;
   left: 0;
   bottom: 0;
   right: 0;
 }
+.stickyComponentContainerHorizontal{
+  position: sticky;
+  top: 0;
+  width: 100%;
+
+}
 
 #filterbarWrapper{
+  display: flex;
+  justify-content: center;
 
 }
 .formControlLabel-custom{
@@ -155,12 +166,12 @@
 }
 
 #masonryWrapper{
-  margin-top: 2rem;
 }
 
 .dashboardTitleCtonainer{
   width: 100%;
   background-color: #1976d2;
+
 }
 #dashboardTitle{
   display: block;
@@ -213,4 +224,8 @@
 
     height: 100vh;
   }
+}
+
+.hoverEffect:hover{
+
 }

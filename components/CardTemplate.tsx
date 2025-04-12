@@ -24,13 +24,13 @@ const CardTemplate =({data, i, isMasonry}:{data:Pet, i:number, isMasonry?:boolea
                     <CardMedia >
                       <Box >
                         <Image 
-                          height={`${400}`}
-                          width={200}
+                          height={400}
+                          width={400}
                           src={`${optimizeImage(data.croppedImage)}`}
                           alt="pet image placeholder"
                           priority={true}
-                          layout="responsive"
                           className='loadedImage'
+                          style={{width:'100%', height:'auto'}}
                         />
                       </Box>
 
