@@ -1,7 +1,7 @@
 'use client'
 import { forwardRef, useState } from 'react';
 import Button from '@mui/material/Button';
-
+import { useTheme,useMediaQuery } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -37,16 +37,18 @@ const FullScreenDialog=({data,image}:{data:Pet, image:string})=> {
   const handleClose = () => {
     setOpen(false);
   };
-
+    const theme = useTheme();
+    const smallBreakpoint = useMediaQuery(theme.breakpoints.down('md'));
   return (
     <Grid container>
       <Button variant="outlined" onClick={handleClickOpen}>
         View {data.name} Profile
       </Button>
       <Dialog
-        fullScreen
+        fullScreen={smallBreakpoint?true:false}
         open={open}
         TransitionComponent={Transition}
+        onClose={handleClose}
         
       >
         <AppBar className='mb-4' sx={{ position: 'relative' }}>
@@ -69,13 +71,13 @@ const FullScreenDialog=({data,image}:{data:Pet, image:string})=> {
         </AppBar>
  
         <Grid className='modalProfileWrapper' container>
-            <Grid justifyContent={'center'} display={'flex'} textAlign={'center'} size={{xs:12,md:4}}>
+            <Grid justifyContent={'center'} display={'flex'} textAlign={'center'} size={{xs:12,md:12}}>
           
               <Image height={300} width={300} className='profile_image' alt={`${data.name}'s profile picture`} src={optimizingImage(image)} />
       
             </Grid>
             
-            <Grid size={{xs:12,md:'grow'}}>
+            <Grid size={{xs:12,md:12}}>
               <Checklist data={data}/>
             </Grid>   
         </Grid>
