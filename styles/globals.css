@@ -38,7 +38,8 @@
 }
 
 .logo_text {
-  @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+  @apply max-sm:hidden font-semibold text-lg text-black tracking-wide;
+  font-family: var(--font-work-sans), system-ui, sans-serif;
   align-content: center;
 }
 
@@ -228,4 +229,285 @@
 
 .hoverEffect:hover{
 
+}
+
+/* Town Square — RPG shell utilities */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.material-symbols-filled {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.wood-border {
+  border: 8px solid #5d4037;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.wood-frame {
+  border: 8px solid #5d4037;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.parchment-texture {
+  background-color: #f5e6be;
+  background-image: radial-gradient(#d4c69f 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+}
+
+.gold-border {
+  border: 2px solid #d4af37;
+}
+
+.gold-frame {
+  border: 2px solid #d4af37;
+}
+
+.inner-bevel {
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.inner-bevel-deep {
+  box-shadow:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.2),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.stone-button {
+  background: linear-gradient(145deg, #4b463c, #2c160e);
+  border: 2px solid #7c776b;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.stone-button:active {
+  transform: scale(0.95);
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.mana-orb {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 30% 30%, #4facfe, #00f2fe);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px #4facfe;
+}
+
+.mana-orb-lg {
+  background: radial-gradient(circle at 30% 30%, #4facfe 0%, #00f2fe 100%);
+  box-shadow: 0 0 10px #00f2fe;
+}
+
+.scroll-texture {
+  background-image: radial-gradient(circle at 50% 50%, #f5e6be 0%, #e8d5a7 100%);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.05);
+}
+
+.wood-base {
+  background-color: #5d4037;
+}
+
+.crystal-ball-glow {
+  box-shadow:
+    0 0 20px rgba(115, 92, 0, 0.3),
+    inset 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.townsquare-body {
+  min-height: max(884px, 100dvh);
+  overflow-x: hidden;
+}
+
+/* PetQuest community / transparency pages */
+.parchment-bg {
+  background-color: #f5e6be;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.parchment-texture-alt {
+  background-color: #f5e6be;
+  background-image: radial-gradient(#e6d5a7 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.wood-texture {
+  background-color: #5d4037;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 50%, transparent 50%),
+    linear-gradient(rgba(255, 255, 255, 0.05) 50%, transparent 50%);
+  background-size: 4px 4px;
+}
+
+.pressed-state:active {
+  transform: scale(0.95);
+  box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.inset-shadow-custom {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.gold-trim {
+  border: 2px solid #d4af37;
+}
+
+.glowing-accent {
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.scroll-edge {
+  background: linear-gradient(
+    to right,
+    #d4c195,
+    #f5e6be 10%,
+    #f5e6be 90%,
+    #d4c195
+  );
+}
+
+/* Realm map canvas */
+.parchment-texture-fine {
+  background-color: #f5e6be;
+  background-image: radial-gradient(#d4c69f 0.5px, transparent 0.5px);
+  background-size: 10px 10px;
+}
+
+.wood-frame-map {
+  border: 8px solid #5d4037;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.marker-bounce {
+  animation: town-map-marker-bounce 2s infinite;
+}
+
+@keyframes town-map-marker-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Familiar Quest + marketplace */
+.parchment-bg-familiar {
+  background-color: #f5e6be;
+  background-image: radial-gradient(#eadcb4 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+.wood-texture-stripes {
+  background-color: #5d4037;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #5d4037,
+    #5d4037 10px,
+    #4e342e 10px,
+    #4e342e 20px
+  );
+}
+
+.scroll-edge-panels {
+  border-left: 12px solid #e2d1a3;
+  border-right: 12px solid #e2d1a3;
+}
+
+.inner-bevel-strong {
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.wood-border-thin {
+  border: 4px solid #5d4037;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Auth (login / register) — Familiar Quest realm */
+.auth-wood-backdrop {
+  background-color: #2c160e;
+  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD48l3kbnTVNto4gtPTmHkDF3SyAaNQMOURRpkYoUk3NlKoWyhk7rOPD4-fJAUvzcvNXGjrC_J8b8Y42PS-aTEiHxLr220WeLqpmRDXoIdyYHsAcvTI3JPqm_sED3OnyVPmE92Pe3RmZvP3JOLlbgyo0eJH2VhlE-vmJg1Kw5ioLtJM4R3GJvFKNjAPMW9eswM7JGgF7gl_AC1nl1rs58VBSSNejALFBXBjLCw5Drnq4HJCnEmoKuDVGMRIczs3YZvOrp3qGAunhe8n");
+  background-size: cover;
+  background-position: center;
+}
+
+.auth-parchment-card {
+  background-color: #f5e6be;
+  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDOU02MXOLzM1J5JlYD2-zgyqWX0RjDWGMOG1gmhrO-iA-sJ1bkRZlUr9DTG_v8NMI4yMZCMJsjHxqbs51lO9KC8o0CSedit9_Jo5OVc1MEZnZX4EGk-f7Di4Cb-8A-EyshzdBGl2xSHcrN1lopxgbxtVk0uldbHS8bfJz2werMpGH2iV6pjGrCdnSIlBS-CG-7BlGxWkdZetwns_dAm8d-x5p6Yw12McIOI6WkO2MLcydhL-9TXc-sv3xQybRX6hIQA3n5NEQ8nuqA");
+  background-size: cover;
+  background-position: center;
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.1),
+    0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.auth-gold-double {
+  border: 2px solid #735c00;
+  outline: 2px solid #e9c349;
+  outline-offset: -4px;
+}
+
+.inner-bevel-auth-input {
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.auth-register-hero {
+  background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBUr8qZobvKUGStzQXwVJQSsijR35d26NdwNG2YMYq2LZlHxF-SbY5EkVbJzhr6_uJjCAalhXhoXCN7OIzc341I4j4J6oFuOHfdA-Jd1FoKNzb1rGif8Bl_ZJ35M7CwbeU5ZJod29oxEIqQNO5PycCtxI8XM-aKiLC2nOnRj7StyZLC3T234zSk6miUagu0h9esEFnUSwuy0eszLXF_OK8n0992hovjI5LBz9R4skK5qfscLX3pkFT4NmsY7--7rzieTZDFiAXFTSsP");
+}
+
+/* Main content offset: fixed header + realm bar (hamburger on mobile, link row on md+). */
+.realm-main-below-unified-nav {
+  padding-top: calc(4rem + 3.25rem + 1rem);
+}
+
+@media (min-width: 768px) {
+  .realm-main-below-unified-nav {
+    padding-top: calc(7.25rem + 1rem);
+  }
+}
+
+/* Giving FAB: heart confetti on hover (tertiary / on-tertiary palette) */
+@keyframes giving-fab-heart-burst {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(0.15) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(0.7)
+      rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+.giving-fab-heart {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.group.giving-fab-morph:hover .giving-fab-heart,
+.group.giving-fab-morph:focus-within .giving-fab-heart {
+  animation: giving-fab-heart-burst 0.88s ease-out forwards;
 }

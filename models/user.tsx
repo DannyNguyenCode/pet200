@@ -20,7 +20,11 @@ const UserSchema = new Schema({
     },
     password:{
         type:String,
-    }
+    },
+    familiarName: {
+        type: String,
+        default: "",
+    },
 })
 
 const User = models.User || model("User", UserSchema);

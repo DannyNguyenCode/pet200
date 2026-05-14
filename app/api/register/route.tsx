@@ -28,6 +28,7 @@ export const POST = async(req:any)=>{
             image:user.image,
             loginType:user.loginType,
             password:user.password,
+            familiarName: user.familiarName ?? "",
         });
         await newUser.save();
         return new Response("Successfully registered as a user",{status:201});
