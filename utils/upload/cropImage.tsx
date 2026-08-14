@@ -1,6 +1,6 @@
 'use client'
 
-import { Area } from "react-easy-crop";
+import type { smartCropResult } from "@interfaces/smartCropResult";
 
 const getBlobFromCanvas = (canvas:any, file:any, withUrl:any) =>
     new Promise((resolve, reject) => {
@@ -23,7 +23,7 @@ const getBlobFromCanvas = (canvas:any, file:any, withUrl:any) =>
       }, file.type);
     });
   
-  const cropImage = async (imageElm:any, file:any, crop:Area, withUrl = false) => {
+  const cropImage = async (imageElm:any, file:any, crop:smartCropResult, withUrl = false) => {
     const canvas = document.createElement("canvas"),
       scaleX = imageElm.naturalWidth / imageElm.width,
       scaleY = imageElm.naturalHeight / imageElm.height,
@@ -51,4 +51,3 @@ const getBlobFromCanvas = (canvas:any, file:any, withUrl:any) =>
   };
   
   export default cropImage;
-  

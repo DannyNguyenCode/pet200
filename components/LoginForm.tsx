@@ -32,8 +32,11 @@ export default function LoginForm({
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem(REMEMBER_KEY);
-    if (saved) setEmail(saved);
+    const frame = requestAnimationFrame(() => {
+      const saved = localStorage.getItem(REMEMBER_KEY);
+      if (saved) setEmail(saved);
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {

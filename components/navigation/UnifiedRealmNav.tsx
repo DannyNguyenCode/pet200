@@ -78,14 +78,11 @@ function drawerRow(active: boolean) {
 
 export default function UnifiedRealmNav() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const [openPathname, setOpenPathname] = useState<string | null>(null);
+  const open = openPathname === pathname;
   const drawerId = useId();
 
-  const close = useCallback(() => setOpen(false), []);
-
-  useEffect(() => {
-    close();
-  }, [pathname, close]);
+  const close = useCallback(() => setOpenPathname(null), []);
 
   useEffect(() => {
     if (!open) return;
@@ -127,7 +124,7 @@ export default function UnifiedRealmNav() {
               className="flex min-h-11 min-w-11 items-center gap-2 rounded-lg px-3 py-2 text-on-secondary transition-colors hover:bg-tertiary-container hover:text-on-tertiary-container focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-secondary"
               aria-expanded={open}
               aria-controls={drawerId}
-              onClick={() => setOpen(true)}
+              onClick={() => setOpenPathname(pathname)}
             >
               <span className="material-symbols-outlined text-2xl" aria-hidden>
                 menu

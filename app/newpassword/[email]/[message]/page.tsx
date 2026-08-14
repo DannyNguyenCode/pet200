@@ -5,9 +5,11 @@ import LoadingPage from '@components/LoadingPage'
 import { toast } from 'react-toastify'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
+import bcrypt from 'bcryptjs';
 
-const page = ({ params }: { params: { email: string,message:string } }) => {
+const NewPasswordPage = () => {
+    const params = useParams<{ email: string; message: string }>();
 
     const [password,setPassword]= useState('');
     const [confirm,setConfirm]=useState('')
@@ -15,7 +17,6 @@ const page = ({ params }: { params: { email: string,message:string } }) => {
     const [showPassword,setShowPassword]=useState(false)
     const [showConfirm,setShowConfirm]=useState(false)
     const router=useRouter();
-    const bcrypt = require('bcryptjs');
 
     const onSubmit = async (e:any)=>{
       e.preventDefault();
@@ -78,4 +79,4 @@ const page = ({ params }: { params: { email: string,message:string } }) => {
   )
 }
 
-export default page
+export default NewPasswordPage

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LoadingButton from "@mui/lab/LoadingButton";
+import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 
 type ForgotPasswordFormProps = {
@@ -44,7 +44,7 @@ export default function ForgotPasswordForm({
             inputProps={{ "aria-required": true }}
           />
 
-          <LoadingButton
+          <Button
             size="large"
             type="submit"
             loading={isLoading}
@@ -53,7 +53,7 @@ export default function ForgotPasswordForm({
             aria-busy={isLoading}
           >
             Send passcode
-          </LoadingButton>
+          </Button>
 
           {toastContainer}
         </form>

@@ -1,8 +1,3 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {};
-
-// export default nextConfig;
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     async redirects() {
@@ -19,13 +14,6 @@ const nextConfig = {
         },{ protocol: "https", hostname: "res.cloudinary.com" }],
         
         
-    },
-    webpack(config) {
-        config.experiments = {
-        ...config.experiments,
-        topLevelAwait: true,
-        };
-        return config;
     },
 };
     

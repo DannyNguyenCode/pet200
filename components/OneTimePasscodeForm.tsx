@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Box,FormControl,Stack,Divider,Typography } from '@mui/material'
-import LoadingButton from '@mui/lab/LoadingButton';
+import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
 import VerificationInput from "react-verification-input";
 const OneTimePasscodeForm = (
@@ -39,7 +39,7 @@ const OneTimePasscodeForm = (
         
           <VerificationInput autoFocus length={6} placeholder="_" validChars='0-9' inputProps={{ inputMode: "numeric" }} value={passcode} onChange={(e)=>{setPasscode(e)}}/>
           <Stack spacing={2} direction={'row'}>
-          <LoadingButton
+          <Button
             size="medium"
             type='submit'
             loading={isLoading}
@@ -47,8 +47,8 @@ const OneTimePasscodeForm = (
           >
             Submit
 
-          </LoadingButton>
-          <LoadingButton
+          </Button>
+          <Button
             size="medium"
             type='button'
             loading={isLoading}
@@ -58,7 +58,7 @@ const OneTimePasscodeForm = (
           >
             Resend
 
-          </LoadingButton>
+          </Button>
 
           </Stack>
 
