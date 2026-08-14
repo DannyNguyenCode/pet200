@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useState } from "react";
+import { useId } from "react";
 import Image from "next/image";
 import { registerPasswordSchema } from "@utils/registerPasswordSchema";
 
@@ -44,42 +44,19 @@ export default function RegisterForm({
 }) {
   const passwordHintId = useId();
   const confirmHintId = useId();
-  const [isPassValid, setIsPassValid] = useState(true);
-  const [isConfirmValid, setIsConfirmValid] = useState(true);
-  const [validationError, setValidationError] = useState("");
-
-  useEffect(() => {
-    void validatePassword();
-  }, [password, confirm]);
-
-  async function validatePassword() {
-    if (!password && !confirm) {
-      setValidationError("");
-      setIsPassValid(true);
-      setIsConfirmValid(true);
-      return;
-    }
-    try {
-      const result = await registerPasswordSchema.safeParseAsync({
-        passwordz: password,
-        confirmz: confirm,
-      });
-      if (!result.success) {
-        const err = result.error.errors[0];
-        if (err.path[0] === "passwordz") setIsPassValid(false);
-        else setIsPassValid(true);
-        if (err.path[0] === "confirmz") setIsConfirmValid(false);
-        else setIsConfirmValid(true);
-        setValidationError(err.message);
-      } else {
-        setValidationError("");
-        setIsPassValid(true);
-        setIsConfirmValid(true);
-      }
-    } catch {
-      setValidationError("");
-    }
-  }
+  const validationResult = registerPasswordSchema.safeParse({
+    passwordz: password,
+    confirmz: confirm,
+  });
+  const validationIssue =
+    password || confirm
+      ? validationResult.success
+        ? undefined
+        : validationResult.error.errors[0]
+      : undefined;
+  const isPassValid = validationIssue?.path[0] !== "passwordz";
+  const isConfirmValid = validationIssue?.path[0] !== "confirmz";
+  const validationError = validationIssue?.message ?? "";
 
   const canSubmit =
     username.trim().length > 0 &&

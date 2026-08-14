@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { randomizer } from '@utils/randomizer'
-const forgotPassword = () => {
+const ForgotPassword = () => {
   const router = useRouter();
   const [isLoading,setIsLoading] = useState(false);
   const [email,setEmail]= useState('');
@@ -82,4 +82,4 @@ const forgotPassword = () => {
   )
 }
 
-export default forgotPassword
+export default ForgotPassword

@@ -10,8 +10,8 @@ import TextField from '@mui/material/TextField';
 import smartcrop from 'smartcrop'
 import cropImage from '@utils/upload/cropImage';
 import { smartCropResult } from '@interfaces/smartCropResult';
-import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/navigation';
+import NextImage from 'next/image';
 const PetForm = ({
   handleSubmit,
   setPet,
@@ -347,11 +347,11 @@ const PetForm = ({
                       onChange={(e:any)=>onImageSelected(e)}
                     />
                   </Button>
-                  {imgPath ?<LoadingButton size="medium"type='submit'loading={submitting}variant="contained"onClick={()=>setImgPath('')}>Cancel</LoadingButton>:<></>}
+                  {imgPath ?<Button size="medium"type='submit'loading={submitting}variant="contained"onClick={()=>setImgPath('')}>Cancel</Button>:<></>}
 
                 </Box>
                
-                   {imgPath ? <img width={500} height={500} src={imgPath} alt='image of uploaded pets'/>:<><Typography textAlign={'center'}>Your uploaded images are automatically cropped using AI.</Typography><Typography textAlign={'center'}> Powered by: <Link target="_blank" rel="noopener" href=' https://github.com/jwagner/smartcrop.js'> https://github.com/jwagner/smartcrop.js</Link></Typography> </> }
+                   {imgPath ? <NextImage width={500} height={500} unoptimized src={imgPath} alt='image of uploaded pets'/>:<><Typography textAlign={'center'}>Your uploaded images are automatically cropped using AI.</Typography><Typography textAlign={'center'}> Powered by: <Link target="_blank" rel="noopener" href=' https://github.com/jwagner/smartcrop.js'> https://github.com/jwagner/smartcrop.js</Link></Typography> </> }
               </Stack>
             </Grid>
       

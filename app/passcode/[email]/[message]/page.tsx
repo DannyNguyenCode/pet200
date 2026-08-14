@@ -3,8 +3,9 @@ import OneTimePasscodeForm from '@components/OneTimePasscodeForm'
 import React, { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/navigation';
-const OneTimePassCode = ({ params }: { params: { email: string,message:string } }) => {
+import { useParams, useRouter } from 'next/navigation';
+const OneTimePassCode = () => {
+    const params = useParams<{ email: string; message: string }>();
     const [passcode,setPasscode]= useState('')
     const [isLoading,setIsLoading]= useState(false)
     const router = useRouter();
@@ -43,7 +44,7 @@ const OneTimePassCode = ({ params }: { params: { email: string,message:string } 
       if(params.message === "EMS"){
         toast("Email with passcode has been sent")
       }
-    },[])
+    },[params.message])
   return (
     <>
  

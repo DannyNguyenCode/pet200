@@ -18,7 +18,7 @@ Application goal is to find pets a new home, whether you are looking to adopt or
 - Masonry-Layout - v4.2.2
 - React-Toastify - v10.0.5
 - resend - v4.0.0 - Note: In development mode, emails can only be sent to developers email.
-- NodeJS - v20.12.2
+- NodeJS - v24.19.0
 - bcryptjs - v2.4.3
 - react - v18.0.0
 - typescript - v5.0.0

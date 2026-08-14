@@ -1,8 +1,8 @@
 'use client'
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import { newPasswordSchema } from '@utils/newPasswordSchema'
 import { Box,Typography,FormControl,Stack,TextField,InputAdornment,IconButton } from '@mui/material'
-import { LoadingButton } from '@mui/lab'
+import Button from '@mui/material/Button'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 const NewPasswordForm = (
@@ -38,44 +38,21 @@ const NewPasswordForm = (
     message:string
   }
 ) => {
-  const [isPassValid,setIsPassValid]=useState(true);
-  const [validationError,setValidationError]=useState('')
-  const [isConfirmValid,setIsConfirmValid]=useState(true);
   useEffect(()=>{
     if(message&&message === 'PC'){
       toast("Passcode entered was correct, Please enter new password")
     }
-  },[])
-  useEffect(()=>{
-
-    validatePassword()
-
-  },[password,confirm])
-  const validatePassword = async()=>{
-    try{
-      let result = await newPasswordSchema.safeParseAsync({passwordz:password,confirmz:confirm})
-      if(!result.success){
-        if(result.error.errors[0].path[0] === "passwordz"){
-          setIsPassValid(false)    
-        }else{
-          setIsPassValid(true)
-        }
-
-        if(result.error.errors[0].path[0] === "confirmz"){
-          setIsConfirmValid(false)
-        }else{
-          setIsConfirmValid(true)
-        }
-
-        setValidationError(result.error.errors[0].message)
-      }else{
-        setValidationError("")
-      }
-    }catch(err){
-      console.log(err)
-    }
-
-  }
+  },[message, toast])
+  const validationResult = newPasswordSchema.safeParse({passwordz:password,confirmz:confirm})
+  const validationIssue =
+    password || confirm
+      ? validationResult.success
+        ? undefined
+        : validationResult.error.errors[0]
+      : undefined
+  const isPassValid = validationIssue?.path[0] !== "passwordz"
+  const isConfirmValid = validationIssue?.path[0] !== "confirmz"
+  const validationError = validationIssue?.message ?? ""
   return (
     <Box className='content_wrapper' sx={{
       margin:'12rem',
@@ -137,14 +114,14 @@ const NewPasswordForm = (
               {!isConfirmValid&&confirm?<Typography color={'red'} alignSelf={'center'}>{validationError}</Typography>:<></>}
               </Stack>
               <Stack spacing={2} direction={'row'}>
-                <LoadingButton
+                <Button
                   size="medium"
                   type='submit'
                   loading={isLoading}
                   variant="contained"
                   >
                   Update Password
-                </LoadingButton>
+                </Button>
             
               </Stack>
             {ToastContainer}
